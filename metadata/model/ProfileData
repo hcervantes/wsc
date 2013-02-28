@@ -1,0 +1,145 @@
+{
+    "type": "datamodel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ProfileData"
+    },
+    "id": "ExtBox1-ext-gen11409",
+    "designerId": "99a9b726-d79b-402a-8b9d-53e06d0e1690",
+    "cn": [
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field",
+                "name": "ID"
+            },
+            "designerId": "18cbbab6-c109-4dc5-af37-30bc1a9fe3ca"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field1",
+                "name": "ProfileName"
+            },
+            "designerId": "8b70bacb-fcb3-413e-840b-145106a6fc17"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field2",
+                "name": "HSize"
+            },
+            "designerId": "0567f0dd-81de-49f0-8a7b-373c94e6edc3"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field3",
+                "name": "VSize"
+            },
+            "designerId": "a5f97af8-4443-4acd-8a95-459377a5edbb"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field4",
+                "name": "VHFF"
+            },
+            "designerId": "ac4863d9-d03b-4204-8543-ed695afbdf15"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field5",
+                "name": "HNPR"
+            },
+            "designerId": "743c8843-5c03-47f0-afe7-a8205a7623f5"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field6",
+                "name": "VNPR"
+            },
+            "designerId": "b62b6873-faef-4a97-bdcc-c12adf2e0f15"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field7",
+                "name": "NumProjector"
+            },
+            "designerId": "aaf5d1e2-900f-4694-a12d-05d0e3e39123"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field8",
+                "name": "HOpMon"
+            },
+            "designerId": "95899d00-bbaf-4493-a3ba-8d53dd987ff9"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field9",
+                "name": "VOpMon"
+            },
+            "designerId": "0c865fa3-45a4-4c28-8053-1f7125257bdc"
+        }
+    ]
+}

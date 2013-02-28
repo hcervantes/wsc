@@ -1,0 +1,804 @@
+{
+    "type": "viewport",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MyViewport",
+        "requires": [
+            "MyApp.controller.WSC"
+        ],
+        "designer|initialView": true
+    },
+    "id": "ExtBox1-ext-gen27354",
+    "designerId": "24b9b1ce-c099-47d7-a061-eb437767074f",
+    "cn": [
+        {
+            "type": "panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyPanel",
+                "height": null,
+                "width": 650,
+                "title": "Wide Screen Calculator"
+            },
+            "designerId": "fa120399-339d-4626-a544-c052529596bc",
+            "cn": [
+                {
+                    "type": "form",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyForm",
+                        "width": null,
+                        "bodyPadding": 10,
+                        "title": ""
+                    },
+                    "designerId": "7ce831ce-3c57-48d3-86a2-77d428f3034a",
+                    "cn": [
+                        {
+                            "type": "textfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|anchor": "100%",
+                                "designer|userClassName": "MyTextField",
+                                "designer|displayName": "lblShowTitle",
+                                "itemId": "lblShowTitle",
+                                "fieldLabel": "Show Title",
+                                "blankText": "Enter a Show Title"
+                            },
+                            "designerId": "0499e133-d73e-4da9-8d54-077a612538dd"
+                        },
+                        {
+                            "type": "textfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|anchor": "100%",
+                                "designer|userClassName": "MyTextField1",
+                                "designer|displayName": "lblShowLocation",
+                                "itemId": "lblShowLocation",
+                                "fieldLabel": "Show Location"
+                            },
+                            "designerId": "dba75527-f61c-4d3d-a7cb-65bb77b5b0e5"
+                        },
+                        {
+                            "type": "combobox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|anchor": "100%",
+                                "designer|userClassName": "MyComboBox1",
+                                "itemId": "cmbProfile",
+                                "fieldLabel": "Load Profile",
+                                "displayField": "ProfileName",
+                                "store": "profileStore"
+                            },
+                            "designerId": "283de0e9-9e9e-4aa5-8684-b4279e36af2f",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "onCmbProfileSelect",
+                                        "fn": "onCmbProfileSelect",
+                                        "implHandler": [
+                                            "var record = records[0].data;",
+                                            "hsize.setValue(record.HSize);",
+                                            "vsize.setValue(record.VSize);",
+                                            "vhff.setValue(record.VHFF);",
+                                            "HNatPixRate.setValue(record.HNPR);",
+                                            "VNatPixRate.setValue(record.VNPR);",
+                                            "numprojectors.setValue(record.NumProjector);",
+                                            "spyOpMonH.setValue(record.HOpMon);",
+                                            "spyOpMonV.setValue(record.VOpMon);"
+                                        ],
+                                        "name": "select",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "b80f9db1-3fce-48c8-9bae-df5a721ce4f1"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyButton",
+                                "designer|displayName": "btnSave",
+                                "itemId": "btnSave",
+                                "text": "Save Profile"
+                            },
+                            "designerId": "3d394afd-9620-4835-bf1f-0ed792b9a769",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "onBtnSaveClick",
+                                        "fn": "onBtnSaveClick",
+                                        "implHandler": [
+                                            "// Screens",
+                                            "var screens = wsCalc.getScreens();",
+                                            "// Spyder Overlap",
+                                            "alert(screens[0].leftLeft + '; ' + screens[0].leftCenter + '; ' + screens[0].leftRight + '; ' + screens[0].centerCenter);",
+                                            "",
+                                            ""
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "fc868aa1-82a3-406a-886c-483516d3c29a"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "container|pack": "center",
+                        "designer|userClassName": "MyPanel1",
+                        "height": null,
+                        "layout": "hbox",
+                        "title": null
+                    },
+                    "designerId": "06461044-2347-4c3e-9fdb-30affa83fb17",
+                    "cn": [
+                        {
+                            "type": "form",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "designer|userClassName": "MyForm1",
+                                "bodyPadding": 10,
+                                "title": "Screen Inputs"
+                            },
+                            "designerId": "045c8706-2e6c-44fd-bc17-c67759c000c0",
+                            "cn": [
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField",
+                                        "designer|displayName": "hsize",
+                                        "itemId": "hsize",
+                                        "fieldLabel": "Horizontal Size"
+                                    },
+                                    "designerId": "07aac292-4b20-4b13-8108-20bd446f506d",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "onHsizeChange",
+                                                "fn": "onHsizeChange",
+                                                "implHandler": [
+                                                    ""
+                                                ],
+                                                "name": "change",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "f1d2d422-5fc9-4637-8729-19122734af96"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField1",
+                                        "itemId": "vsize",
+                                        "fieldLabel": "Vertical Size"
+                                    },
+                                    "designerId": "774a2a07-bfd9-48c3-af89-c29f83ec8284"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField2",
+                                        "itemId": "aspectRatio",
+                                        "fieldLabel": "Aspect Ratio",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 3
+                                    },
+                                    "designerId": "c5235f9e-3ed3-48aa-8542-f28da146339d"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField3",
+                                        "itemId": "vhff",
+                                        "fieldLabel": "Vert. Ht From Floor"
+                                    },
+                                    "designerId": "610b1329-7f91-41ec-94ab-bc266fe63ef2"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "form",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "designer|userClassName": "MyForm2",
+                                "height": null,
+                                "bodyPadding": 10,
+                                "title": "Projector Information"
+                            },
+                            "designerId": "dac85cc8-b89c-4017-ad45-467574651b67",
+                            "cn": [
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField4",
+                                        "itemId": "HNatPixRate",
+                                        "fieldLabel": "Horz. Native Pixel Rate"
+                                    },
+                                    "designerId": "354ce140-dce9-4f11-8a4a-2dd3e0c8a658"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField5",
+                                        "itemId": "VNatPixRate",
+                                        "fieldLabel": "Vert. Native Pixel Rate"
+                                    },
+                                    "designerId": "003741d0-b37d-4111-a3fc-8245dd8481e7"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField7",
+                                        "itemId": "projAspectRatio",
+                                        "fieldLabel": "Aspect Ratio",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 3
+                                    },
+                                    "designerId": "d1fb94fa-9e7a-4fc6-9792-fb55ea772ec8"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField6",
+                                        "itemId": "numprojectors",
+                                        "fieldLabel": "Num. of Projectors"
+                                    },
+                                    "designerId": "7b9ae36b-1a50-4c01-9ad0-136b594873bb"
+                                },
+                                {
+                                    "type": "textfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyTextField2",
+                                        "itemId": "sizePerStack",
+                                        "fieldLabel": "Size Per Stack"
+                                    },
+                                    "designerId": "25aa3f87-7452-4820-bedc-bbecdf9aa616"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField13",
+                                        "itemId": "pixPerInch",
+                                        "fieldLabel": "Pixels Per Inch",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 3
+                                    },
+                                    "designerId": "30a6de26-4898-4912-8f50-056990990340"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField14",
+                                        "itemId": "overlapSize",
+                                        "fieldLabel": "Overlap Size",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "f5bd9c47-1407-48df-8f74-749d88717278"
+                                },
+                                {
+                                    "type": "fieldset",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MyFieldSet",
+                                        "title": "Lensing"
+                                    },
+                                    "designerId": "cc3907b4-eefa-4d69-b10f-ad70d0f2799e",
+                                    "cn": [
+                                        {
+                                            "type": "numberfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout|anchor": "100%",
+                                                "designer|userClassName": "MyNumberField8",
+                                                "itemId": "lens",
+                                                "fieldLabel": "Lens"
+                                            },
+                                            "designerId": "0d2cf123-4136-41c1-aef5-fe2132ed8e2d"
+                                        },
+                                        {
+                                            "type": "numberfield",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout|anchor": "100%",
+                                                "designer|userClassName": "MyNumberField9",
+                                                "itemId": "distance",
+                                                "fieldLabel": "Distance"
+                                            },
+                                            "designerId": "82867ade-5bd6-4fbd-be9f-fccea04a2115"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "form",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "designer|userClassName": "MyForm3",
+                                "bodyPadding": 10,
+                                "title": "Spyder Pixel Information"
+                            },
+                            "designerId": "397632a4-fd92-405b-85ed-961dd251fee2",
+                            "cn": [
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField15",
+                                        "itemId": "spyHNatPixRate",
+                                        "fieldLabel": "Horz. Native Pixel Rate",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "dc83bbd1-fbbb-4337-b15a-db8d30473e5d"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField16",
+                                        "itemId": "spyVNatPixRate",
+                                        "fieldLabel": "Vert. Native Pixel Rate",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "b7566204-1b0f-467c-be85-e6c664f811f0"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField17",
+                                        "itemId": "spyAspectRatio",
+                                        "fieldLabel": "Aspect Ratio",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 3
+                                    },
+                                    "designerId": "17751ca6-4540-4d39-a592-0da1d95f83aa"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField10",
+                                        "itemId": "spyOverlap",
+                                        "fieldLabel": "Overlap",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "e9eaa644-3e72-4778-81ab-cd38931275eb"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField18",
+                                        "itemId": "spyScreenTotalPix",
+                                        "fieldLabel": "Screen Total Pixels",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "087e1331-5e8d-4592-b9c9-b1c2be14bc77"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField10",
+                                        "itemId": "spyOpMonH",
+                                        "fieldLabel": "OpMon Format H",
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "efa6afc6-eb1f-41d3-ba26-4358d514074c"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField10",
+                                        "itemId": "spyOpMonV",
+                                        "fieldLabel": "OpMon Format V",
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "760dcedc-8232-42c7-97fc-b1a9f0a1379b"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField19",
+                                        "itemId": "spyOpMonTotalPix",
+                                        "fieldLabel": "OpMon Total Pix",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "8a08041d-a08c-4e5a-84a7-cc5ef36dd2d1"
+                                },
+                                {
+                                    "type": "numberfield",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|anchor": "100%",
+                                        "designer|userClassName": "MyNumberField20",
+                                        "itemId": "spyTotalPix",
+                                        "fieldLabel": "Spyder Total Pix",
+                                        "editable": false,
+                                        "hideTrigger": true,
+                                        "decimalPrecision": 0
+                                    },
+                                    "designerId": "6d940d78-1aaf-4dd6-97ff-53b7b4b04d14"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onViewportAfterLayout",
+                "fn": "onViewportAfterLayout",
+                "implHandler": [
+                    "wsCalc = new MyApp.controller.WSC();",
+                    "// Events",
+                    "var btnSave = this.down('#btnSave');",
+                    "btnSave.on('click', this.onClick, this);",
+                    "",
+                    "hsize = this.down('#hsize');",
+                    "hsize.on('change', this.onChange, this);",
+                    "",
+                    "vsize = this.down('#vsize');",
+                    "vsize.on('change', this.onChange, this);",
+                    "",
+                    "vhff = this.down('#vhff');",
+                    "vhff.on('change', this.onChange, this);",
+                    "",
+                    "aspectRatio = this.down('#aspectRatio');",
+                    "",
+                    "HNatPixRate = this.down('#HNatPixRate');",
+                    "HNatPixRate.on('change', this.onChange, this);",
+                    "",
+                    "VNatPixRate = this.down('#VNatPixRate');",
+                    "VNatPixRate.on('change', this.onChange, this);",
+                    "",
+                    "projAspectRatio = this.down('#projAspectRatio');",
+                    "",
+                    "numprojectors = this.down('#numprojectors');",
+                    "numprojectors.on('change', this.onChange, this);",
+                    "",
+                    "sizePerStack = this.down('#sizePerStack');",
+                    "",
+                    "pixPerInch = this.down('#pixPerInch');",
+                    "",
+                    "overlapSize = this.down('#overlapSize');",
+                    "",
+                    "lens = this.down('#lens');",
+                    "lens.on('change', this.onChange, this);",
+                    "",
+                    "distance = this.down('#distance');",
+                    "distance.on('change', this.onChange, this);",
+                    "",
+                    "",
+                    "spyHNatPixRate = this.down('#spyHNatPixRate');",
+                    "spyVNatPixRate = this.down('#spyVNatPixRate');",
+                    "",
+                    "spyOpMonH = this.down('#spyOpMonH');",
+                    "spyOpMonH.on('change', this.OnspyOpMonTotalPixChange, this);",
+                    "",
+                    "spyOpMonV = this.down('#spyOpMonV');",
+                    "spyOpMonV.on('change', this.OnspyOpMonTotalPixChange, this);",
+                    "",
+                    "spyOpMonTotalPix = this.down('#spyOpMonTotalPix');",
+                    "",
+                    "spyTotalPix = this.down('#spyTotalPix');",
+                    "spyAspectRatio = this.down('#spyAspectRatio');",
+                    "spyScreenTotalPix = this.down('#spyScreenTotalPix');",
+                    "spyOverlap = this.down('#spyOverlap');"
+                ],
+                "name": "afterlayout",
+                "scope": "me"
+            },
+            "designerId": "1d3f9a51-8f6a-42a3-bf9d-1a37ea23106b"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onChange",
+                "fn": "onChange",
+                "designer|params": [
+                    "el"
+                ],
+                "implHandler": [
+                    "",
+                    "wsCalc.hsize = hsize.value;",
+                    "wsCalc.vsize = vsize.value;",
+                    "wsCalc.vhff = vhff.value;",
+                    "var asprat = wsCalc.getAspectRatio();",
+                    "aspectRatio.setValue(wsCalc.getAspectRatio());",
+                    "",
+                    "// Projector Info calcs",
+                    "wsCalc.HNatPixRate = HNatPixRate.value;",
+                    "wsCalc.VNatPixRate = VNatPixRate.value;",
+                    "var num = projAspectRatio.setValue(wsCalc.getProjAspectRatio());",
+                    "wsCalc.numprojectors = numprojectors.value;",
+                    "",
+                    "// spyder pixel info",
+                    "pixPerInch.setValue(wsCalc.getPixPerInch());",
+                    "",
+                    "// StackSize",
+                    "sizePerStack.setValue(wsCalc.getStackWidth() + ' Wide by ' + wsCalc.vsize + ' high');",
+                    "// lens & dist",
+                    "if (el.itemId == 'distance') {",
+                    "    wsCalc.distance = distance.value;",
+                    "    num = wsCalc.distance / wsCalc.getStackWidth();",
+                    "    roundnum = Math.round(num * Math.pow(10, 2)) / Math.pow(10, 2);",
+                    "    wsCalc.lens = roundnum;",
+                    "    // change dist",
+                    "    lens.setRawValue(wsCalc.lens);",
+                    "} else {",
+                    "    wsCalc.lens = lens.value;",
+                    "    num = wsCalc.lens * wsCalc.getStackWidth();",
+                    "    roundnum = Math.round(num * Math.pow(10, 2)) / Math.pow(10, 2);",
+                    "    wsCalc.distance = roundnum;",
+                    "    distance.setRawValue(wsCalc.distance);",
+                    "}",
+                    "",
+                    "spyHNatPixRate.setValue(wsCalc.getSpyHNatPixRate());",
+                    "spyVNatPixRate.setValue(wsCalc.getSpyVNatPixRate());",
+                    "spyAspectRatio.setValue(wsCalc.getSpyAspectRatio());",
+                    "",
+                    "try",
+                    "{",
+                    "    // Screen overlap size",
+                    "    overlapSize.setValue(Ext.Number.toFixed(wsCalc.getOverlapSize(), 0));",
+                    "    // Spyder Overlap",
+                    "    Ext.Number.toFixed(spyOverlap.setValue(wsCalc.getSpyOverlap()), 0);",
+                    "}",
+                    "catch(err){}",
+                    ""
+                ]
+            },
+            "designerId": "1d05a486-14a0-4a8b-a1e1-7dcb4360d80f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "OnspyOpMonTotalPixChange",
+                "fn": "OnspyOpMonTotalPixChange",
+                "designer|params": [
+                    "el"
+                ],
+                "implHandler": [
+                    "",
+                    "wsCalc.spyOpMonV = spyOpMonV.value;",
+                    "wsCalc.spyOpMonH = spyOpMonH.value;",
+                    "spyOpMonTotalPix.setValue(wsCalc.getSpyOpMonTotalPix());",
+                    "spyTotalPix.setValue(wsCalc.getSpyTotalPix());",
+                    "spyScreenTotalPix.setValue(wsCalc.getSpyScreenTotalPix());"
+                ]
+            },
+            "designerId": "d60ab214-3148-4559-b906-88cd9c49aeca"
+        }
+    ]
+}

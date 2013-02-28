@@ -1,0 +1,94 @@
+{
+    "name": "WSC",
+    "settings": {
+        "urlPrefix": "http://localhost/wsc",
+        "spacesToIndent": 4,
+        "exportPath": "/opt/lampp/htdocs/WSC/WSC",
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false
+    },
+    "xdsVersion": "2.1.0",
+    "xdsBuild": 678,
+    "schemaVersion": 1,
+    "upgradeVersion": 210000000498,
+    "framework": "ext41",
+    "topInstanceFileMap": {
+        "b1b83165-304f-41da-8986-b238c16475a0": {
+            "paths": [
+                "metadata/resource/Library"
+            ],
+            "className": "Library"
+        },
+        "24b9b1ce-c099-47d7-a061-eb437767074f": {
+            "paths": [
+                "metadata/view/MyViewport",
+                "app/view/override/MyViewport.js",
+                "app/view/MyViewport.js",
+                "app/view/Viewport.js"
+            ],
+            "className": "MyViewport"
+        },
+        "c3ab3a20-74b0-40de-8c1f-f88841faea82": {
+            "paths": [
+                "metadata/resource/js"
+            ],
+            "className": "js"
+        },
+        "94598dfb-e775-41de-8bf4-e8d5a722c0ae": {
+            "paths": [
+                "metadata/controller/WSC",
+                "app/controller/override/WSC.js",
+                "app/controller/WSC.js"
+            ],
+            "className": "WSC"
+        },
+        "abb6ac0c-48b5-46e5-9278-8a9dbd402bb6": {
+            "paths": [
+                "metadata/controller/Screen",
+                "app/controller/override/Screen.js",
+                "app/controller/Screen.js"
+            ],
+            "className": "Screen"
+        },
+        "28fd6986-6cad-453d-8850-cfb79570b1b2": {
+            "paths": [
+                "metadata/store/profileStore",
+                "app/store/override/profileStore.js",
+                "app/store/profileStore.js"
+            ],
+            "className": "profileStore"
+        },
+        "99a9b726-d79b-402a-8b9d-53e06d0e1690": {
+            "paths": [
+                "metadata/model/ProfileData",
+                "app/model/override/ProfileData.js",
+                "app/model/ProfileData.js"
+            ],
+            "className": "ProfileData"
+        }
+    },
+    "viewOrderMap": {
+        "view": [
+            "24b9b1ce-c099-47d7-a061-eb437767074f"
+        ],
+        "store": [
+            "28fd6986-6cad-453d-8850-cfb79570b1b2"
+        ],
+        "controller": [
+            "94598dfb-e775-41de-8bf4-e8d5a722c0ae",
+            "abb6ac0c-48b5-46e5-9278-8a9dbd402bb6"
+        ],
+        "model": [
+            "99a9b726-d79b-402a-8b9d-53e06d0e1690"
+        ],
+        "resource": [
+            "b1b83165-304f-41da-8986-b238c16475a0",
+            "c3ab3a20-74b0-40de-8c1f-f88841faea82"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+[05-Feb-2013 22:37:22] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: YES) in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 6
+[06-Feb-2013 06:40:41] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: YES) in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 6
+[06-Feb-2013 06:41:18] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: YES) in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 6
+[06-Feb-2013 06:41:25] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: YES) in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 6
+[06-Feb-2013 06:42:49] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'hcervant_db'@'localhost' (using password: YES) in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 6
+[06-Feb-2013 06:44:50] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:48:36] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:48:50] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:49:16] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:49:26] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:55:00] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:55:06] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:57:05] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 06:58:38] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 07:29:57] PHP Warning:  json_encode() expects exactly 1 parameter, 2 given in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 24
+[06-Feb-2013 08:25:14 America/Denver] PHP Notice:  Undefined index: format in /home5/hcervant/public_html/wsc/getWSCProfile.php on line 3

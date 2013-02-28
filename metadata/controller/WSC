@@ -1,0 +1,463 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "HSize": null,
+        "VSize": null,
+        "VHFF": null,
+        "HNatPixRate": null,
+        "VNatPixRate": null,
+        "NumProjectors": null,
+        "SizePerStack": null,
+        "Lens": null,
+        "Distance": null,
+        "SpyOverlap": null,
+        "SpyOpMonH": null,
+        "SpyOpMonV": null,
+        "designer|userClassName": "WSC",
+        "designer|userAlias": "WSCalc",
+        "requires": [
+            "MyApp.controller.Screen"
+        ]
+    },
+    "configAlternates": {
+        "HSize": "number",
+        "VSize": "number",
+        "VHFF": "number",
+        "HNatPixRate": "number",
+        "VNatPixRate": "number",
+        "NumProjectors": "number",
+        "SizePerStack": "number",
+        "Lens": "number",
+        "Distance": "number",
+        "SpyOverlap": "number",
+        "SpyOpMonH": "number",
+        "SpyOpMonV": "number"
+    },
+    "id": "ExtBox1-ext-gen2446",
+    "designerId": "94598dfb-e775-41de-8bf4-e8d5a722c0ae",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "HSize",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "VSize",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "VHFF",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "HNatPixRate",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "VNatPixRate",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "NumProjectors",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "SizePerStack",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "Lens",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "Distance",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "SpyOverlap",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "SpyOpMonH",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "SpyOpMonV",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getCenterHeightFF",
+                "fn": "getCenterHeightFF",
+                "implHandler": [
+                    "return((this.vsize.value / 2) + this.VHFF);"
+                ]
+            },
+            "designerId": "01901442-6bc3-4781-82e1-69e22fc01db1"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getPixPerInch",
+                "fn": "getPixPerInch",
+                "implHandler": [
+                    "    return (this.getSpyHNatPixRate() / (this.hsize * 12));"
+                ]
+            },
+            "designerId": "30988437-339c-40e9-9de1-610178b81097"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getAspectRatio",
+                "fn": "getAspectRatio",
+                "implHandler": [
+                    "return this.hsize / this.vsize;"
+                ]
+            },
+            "designerId": "dd0ee9c8-9aae-41e2-8d85-d19e968ae1b7"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getProjAspectRatio",
+                "fn": "getProjAspectRatio",
+                "implHandler": [
+                    "return (this.HNatPixRate / this.VNatPixRate);"
+                ]
+            },
+            "designerId": "201903cd-aecb-46fe-bc08-db3935b0674e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getStackWidth",
+                "fn": "getStackWidth",
+                "implHandler": [
+                    "return ((this.vsize * this.getProjAspectRatio()));"
+                ]
+            },
+            "designerId": "c3af4fa5-917d-45fb-9856-773bc2e4f618"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "RoundNum",
+                "fn": "RoundNum",
+                "designer|params": [
+                    "num, x"
+                ],
+                "implHandler": [
+                    "return Ext.Number.toFixed(num, x);",
+                    ""
+                ]
+            },
+            "designerId": "5b82d90d-13da-4a11-a948-7660892f9a51"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getSpyHNatPixRate",
+                "fn": "getSpyHNatPixRate",
+                "implHandler": [
+                    "return (this.VNatPixRate * this.getAspectRatio());"
+                ]
+            },
+            "designerId": "f69e079e-08db-44c8-8269-dd0981bf0e70"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getSpyVNatPixRate",
+                "fn": "getSpyVNatPixRate",
+                "implHandler": [
+                    "return this.VNatPixRate;"
+                ]
+            },
+            "designerId": "2a2616c3-9904-4784-b2d3-fc7d8467c052"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getSpyAspectRatio",
+                "fn": "getSpyAspectRatio",
+                "implHandler": [
+                    "return this.getSpyHNatPixRate() / this.getSpyVNatPixRate();"
+                ]
+            },
+            "designerId": "19ac3dbc-6bd1-4cef-ae92-c6ad7637d0f6"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getSpyScreenTotalPix",
+                "fn": "getSpyScreenTotalPix",
+                "implHandler": [
+                    "return this.getSpyVNatPixRate() * this.getSpyHNatPixRate();"
+                ]
+            },
+            "designerId": "460ef9b1-e809-4398-af41-d9e175be32b0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getSpyOpMonTotalPix",
+                "fn": "getSpyOpMonTotalPix",
+                "implHandler": [
+                    "return this.spyOpMonH * this.getSpyVNatPixRate();"
+                ]
+            },
+            "designerId": "9608ba58-851e-4213-98b4-ee2395552447"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getSpyTotalPix",
+                "fn": "getSpyTotalPix",
+                "implHandler": [
+                    "return this.getSpyScreenTotalPix() + this.getSpyOpMonTotalPix();"
+                ]
+            },
+            "designerId": "98cd9ed3-23ff-4c66-8da0-47850684b3b1"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getScreenWidth",
+                "fn": "getScreenWidth",
+                "implHandler": [
+                    "var ret = this.vsize * (this.HNatPixRate / this.VNatPixRate);",
+                    "return ret;"
+                ]
+            },
+            "designerId": "2fa05e0e-f06a-4458-82f5-73a7df10e35d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getOverLapPix",
+                "fn": "getOverLapPix",
+                "implHandler": [
+                    "var ret = ((this.HNatPixRate * this.numprojectors) - this.getSpyHNatPixRate()) / (this.numprojectors - 1);",
+                    "return ret;"
+                ]
+            },
+            "designerId": "1ea49308-4982-4444-a950-bc3114da7843"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getOverlapSize",
+                "fn": "getOverlapSize",
+                "implHandler": [
+                    "var nonRoundedOLSize = this.getNonRoundedOLSize();",
+                    "var overLapPix = this.getOverLapPix();",
+                    "",
+                    "return (this.getNonRoundedOLSize() * (this.getOverLapPix() / this.HNatPixRate));",
+                    ""
+                ]
+            },
+            "designerId": "e4a5fc2a-8994-4b41-b921-1763d355b5fa"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getNumberOuts",
+                "fn": "getNumberOuts",
+                "implHandler": [
+                    "var outs = 0;",
+                    "var i = 0;",
+                    "while (outs === 0){",
+                    "    var spec = ((this.HNatPixRate*i) - this.getSpyHNatPixRate()) / i-1;",
+                    "    if(spec >= 200 & spec <= 512)",
+                    "    outs = i;",
+                    "    // Safety: prevent loop for ever",
+                    "    if(i > 100) continue;",
+                    "    i++;",
+                    "}",
+                    "return outs;"
+                ]
+            },
+            "designerId": "d5ac2656-e4e6-42f7-939f-ad165af97dab"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getNonRoundedOLSize",
+                "fn": "getNonRoundedOLSize",
+                "implHandler": [
+                    "return this.vsize * this.getProjAspectRatio();",
+                    ""
+                ]
+            },
+            "designerId": "bd0942b5-3873-4bd3-b133-565b374ef249"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getSpyOverlap",
+                "fn": "getSpyOverlap",
+                "implHandler": [
+                    "var spyHNat = this.getSpyHNatPixRate();",
+                    "return (((this.HNatPixRate * this.numprojectors) - this.getSpyHNatPixRate())/2);"
+                ]
+            },
+            "designerId": "9002218e-db2a-4871-9b7a-406beac07f2c"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "getScreens",
+                "fn": "getScreens",
+                "implHandler": [
+                    "   ",
+                    "    var screens = new Array();",
+                    "\tvar x = 0, p = 0, o = 0;",
+                    "\t// x = left calculations, c = center calculations",
+                    "\tvar c = (wsCalc.hsize / 2) - wsCalc.hsize;",
+                    "\tfor ( i = 0; i < this.numprojectors; i++) {",
+                    "\t\tvar scrn = new MyApp.controller.Screen();",
+                    "\t\t// left calcs",
+                    "\t\tscrn.leftLeft = x;",
+                    "\t\tscrn.leftCenter = wsCalc.getScreenWidth() / 2 + x;",
+                    "\t\tscrn.leftRight = wsCalc.getScreenWidth() + x;",
+                    "\t\tx = scrn.leftRight;",
+                    "\t\t\t// center calcs",
+                    "\t\tscrn.centerLeft = c;",
+                    "\t\tscrn.centerCenter = wsCalc.getScreenWidth() / 2 + c;",
+                    "\t\tscrn.centerRight = wsCalc.getScreenWidth() + c;",
+                    "\t\tc = scrn.centerRight;",
+                    "",
+                    "\t\t// pixel output calcs",
+                    "\t\tscrn.startPixelOutput = p;",
+                    "\t\tscrn.endPixelOutput = p + wsCalc.HNatPixRate;",
+                    "\t\tp = scrn.endPixelOutput;",
+                    "",
+                    "\t\t// pixel overlap calcs",
+                    "\t\tscrn.startPixelOverlap = wsCalc.HNatPixRate - wsCalc.getOverLapPix() + o;",
+                    "\t\tscrn.endPixelOverlap = scrn.startPixelOverlap + wsCalc.getOverLapPix();",
+                    "\t\to = scrn.startPixelOverlap;",
+                    "",
+                    "\t\tscreens.push(scrn);",
+                    "\t}",
+                    "\treturn screens;"
+                ]
+            },
+            "designerId": "c11db198-f0b8-4c35-b2e9-a28e5a7f9397"
+        }
+    ]
+}

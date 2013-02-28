@@ -1,0 +1,14 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "url": "WCS.js",
+        "defer": true
+    },
+    "id": "ExtBox1-ext-gen39351",
+    "designerId": "c3ab3a20-74b0-40de-8c1f-f88841faea82"
+}

@@ -1,0 +1,88 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "LeftLeft": 0,
+        "LeftCenter": 0,
+        "LeftRight": 0,
+        "CenterLeft": 0,
+        "CenterCenter": 0,
+        "CenterRight": 0,
+        "StartPixelOutput": 0,
+        "EndPixelOutput": 0,
+        "StartPixelOverlap": 0,
+        "EndPixelOverlap": 0,
+        "designer|userClassName": "Screen",
+        "designer|userAlias": "Screen"
+    },
+    "configAlternates": {
+        "LeftLeft": "number",
+        "LeftCenter": "number",
+        "LeftRight": "number",
+        "CenterLeft": "number",
+        "CenterCenter": "number",
+        "CenterRight": "number",
+        "StartPixelOutput": "number",
+        "EndPixelOutput": "number",
+        "StartPixelOverlap": "number",
+        "EndPixelOverlap": "number"
+    },
+    "id": "ExtBox1-ext-gen11551",
+    "designerId": "abb6ac0c-48b5-46e5-9278-8a9dbd402bb6",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "LeftLeft",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "LeftCenter",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "LeftRight",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "CenterLeft",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "CenterCenter",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "CenterRight",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "StartPixelOutput",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "EndPixelOutput",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "StartPixelOverlap",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "EndPixelOverlap",
+            "type": "string"
+        }
+    ]
+}
