@@ -15,16 +15,5 @@
 
 Ext.define('MyApp.controller.Screen', {
     extend: 'Ext.Base',
-    alias: 'controller.Screen',
-
-    LeftLeft: 0,
-    LeftCenter: 0,
-    LeftRight: 0,
-    CenterLeft: 0,
-    CenterCenter: 0,
-    CenterRight: 0,
-    StartPixelOutput: 0,
-    EndPixelOutput: 0,
-    StartPixelOverlap: 0,
-    EndPixelOverlap: 0
+    alias: 'controller.Screen'
 });

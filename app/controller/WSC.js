@@ -124,7 +124,7 @@ Ext.define('MyApp.controller.WSC', {
             scrn.leftLeft = x;
             scrn.leftCenter = wsCalc.getScreenWidth() / 2 + x;
             scrn.leftRight = wsCalc.getScreenWidth() + x;
-            x = scrn.leftRight;
+            x = scrn.leftRight - this.getOverlapSize(); //subtract overlap
             // center calcs
             scrn.centerLeft = c;
             scrn.centerCenter = wsCalc.getScreenWidth() / 2 + c;
@@ -134,12 +134,12 @@ Ext.define('MyApp.controller.WSC', {
             // pixel output calcs
             scrn.startPixelOutput = p;
             scrn.endPixelOutput = p + wsCalc.HNatPixRate;
-            p = scrn.endPixelOutput;
+            p = scrn.endPixelOutput - this.getOverlapSize(); //subtract overlap
 
             // pixel overlap calcs
             scrn.startPixelOverlap = wsCalc.HNatPixRate - wsCalc.getOverLapPix() + o;
             scrn.endPixelOverlap = scrn.startPixelOverlap + wsCalc.getOverLapPix();
-            o = scrn.startPixelOverlap;
+            o = scrn.startPixelOverlap; // todo: subtract pixel overlap
 
             screens.push(scrn);
         }

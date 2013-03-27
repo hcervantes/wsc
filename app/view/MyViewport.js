@@ -318,9 +318,59 @@ Ext.define('MyApp.view.MyViewport', {
         // Screens
         var screens = wsCalc.getScreens();
         // Spyder Overlap
-        alert(screens[0].leftLeft + '; ' + screens[0].leftCenter + '; ' + screens[0].leftRight + '; ' + screens[0].centerCenter);
+        //alert(screens[0].leftLeft + '; ' + screens[0].leftCenter + '; ' + screens[0].leftRight + '; ' + screens[0].centerCenter);
+        var fxr = 10;
+        var items = [];
+        var screenWidth = wsCalc.getScreenWidth();
+        var screenHeight = wsCalc.vsize;
+        for(var i = 0; i<screens.length; i++)
+        {
+            // Draw the screens
+            var item = {
+                type: 'rect',
+                fill: '#ffc',
+                height: screenHeight * fxr,
+                width: screenWidth * fxr,
+                x: screens[i].leftLeft * fxr,
+                y: 10,
+                opacity: 0.5,
+                stroke: 'red',
+                'stroke-width': 2
+            };
+            items.push(item);
+            // Dimension text
+            item = {
+                type: "text",
+                text: "Hello, Sprite!",
+                fill: "green",
+                font: "18px monospace",
+                textStyle: {
+                    padding: 20,
+                    fill: '#000',
+                    'font-size': '18px',
+                    'font-family': 'Arial',
+                    degrees: 150
+                },        
+                x: screens[i].leftCenter *fxr,
+                y: screenHeight * fxr
+            };
+            items.push(item);
+        }
 
-
+        var drawComponent = Ext.create('Ext.draw.Component', {
+            viewBox: false,
+            items: items,
+            padding: 20,
+            layout: 'stretch',
+            align: 'middle'
+        });
+        Ext.create('Ext.Window', {
+            width: (wsCalc.hsize * fxr) + 100,
+            height: (wsCalc.vsize * fxr) + 100,
+            layout: 'hbox',
+            align: 'middle',
+            items: [drawComponent]
+        }).show();
     },
 
     onHsizeChange: function(field, newValue, oldValue, options) {
