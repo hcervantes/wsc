@@ -13,11 +13,11 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.store.profileStore', {
+Ext.define('WideScreenCalc.store.profileStore', {
     extend: 'Ext.data.Store',
 
     requires: [
-        'MyApp.model.ProfileData'
+        'WideScreenCalc.model.ProfileData'
     ],
 
     constructor: function(cfg) {
@@ -26,7 +26,7 @@ Ext.define('MyApp.store.profileStore', {
         me.callParent([Ext.apply({
             autoLoad: true,
             storeId: 'profileStore',
-            model: 'MyApp.model.ProfileData',
+            model: 'WideScreenCalc.model.ProfileData',
             proxy: {
                 type: 'ajax',
                 url: 'getWSCProfile.php?format=json',

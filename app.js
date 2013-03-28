@@ -28,5 +28,5 @@ Ext.application({
         'MyViewport'
     ],
     autoCreateViewport: true,
-    name: 'MyApp'
+    name: 'WideScreenCalc'
 });

@@ -13,7 +13,7 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.controller.Screen', {
+Ext.define('WideScreenCalc.controller.Screen', {
     extend: 'Ext.Base',
     alias: 'controller.Screen'
 });

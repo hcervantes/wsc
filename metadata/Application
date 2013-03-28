@@ -16,7 +16,7 @@
             "MyViewport"
         ],
         "autoCreateViewport": true,
-        "name": "MyApp"
+        "name": "WideScreenCalc"
     },
     "id": "ExtBox1-ext-gen2214",
     "designerId": "application"

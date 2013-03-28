@@ -13,11 +13,11 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.MyViewport', {
+Ext.define('WideScreenCalc.view.MyViewport', {
     extend: 'Ext.container.Viewport',
 
     requires: [
-        'MyApp.controller.WSC'
+        'WideScreenCalc.controller.WSC'
     ],
 
     initComponent: function() {
@@ -319,8 +319,9 @@ Ext.define('MyApp.view.MyViewport', {
         var screens = wsCalc.getScreens();
         // Spyder Overlap
         //alert(screens[0].leftLeft + '; ' + screens[0].leftCenter + '; ' + screens[0].leftRight + '; ' + screens[0].centerCenter);
-        var fxr = 10;
+        var fxr = 10; var offset = 20;
         var items = [];
+        var textItems = [];
         var screenWidth = wsCalc.getScreenWidth();
         var screenHeight = wsCalc.vsize;
         for(var i = 0; i<screens.length; i++)
@@ -331,7 +332,7 @@ Ext.define('MyApp.view.MyViewport', {
                 fill: '#ffc',
                 height: screenHeight * fxr,
                 width: screenWidth * fxr,
-                x: screens[i].leftLeft * fxr,
+                x: (screens[i].leftLeft * fxr) + offset,
                 y: 10,
                 opacity: 0.5,
                 stroke: 'red',
@@ -339,22 +340,44 @@ Ext.define('MyApp.view.MyViewport', {
             };
             items.push(item);
             // Dimension text
-            item = {
+            var textItem = {
                 type: "text",
-                text: "Hello, Sprite!",
+                text: screens[i].leftLeft,
+                x: (screens[i].leftLeft * fxr) - 7 + offset,
+                y: (screenHeight * fxr) + 30,
                 fill: "green",
                 font: "18px monospace",
-                textStyle: {
-                    padding: 20,
-                    fill: '#000',
-                    'font-size': '18px',
-                    'font-family': 'Arial',
-                    degrees: 150
-                },        
-                x: screens[i].leftCenter *fxr,
-                y: screenHeight * fxr
+                rotate: {
+                    degrees: 270
+                }
             };
-            items.push(item);
+            items.push(textItem);
+            // Center dimension
+            textItem = {
+                type: "text",
+                text: screens[i].leftCenter,
+                x: (screens[i].leftCenter * fxr) - 7 + offset,
+                y: (screenHeight * fxr) + 30,
+                fill: "green",
+                font: "18px monospace",
+                rotate: {
+                    degrees: 270
+                }
+            };
+            items.push(textItem);
+            // Right dimension
+            textItem = {
+                type: "text",
+                text: screens[i].leftRight,
+                x: (screens[i].leftRight * fxr) - 7 + offset,
+                y: (screenHeight * fxr) + 30,
+                fill: "green",
+                font: "18px monospace",
+                rotate: {
+                    degrees: 270
+                }
+            };
+            items.push(textItem);
         }
 
         var drawComponent = Ext.create('Ext.draw.Component', {
@@ -362,8 +385,12 @@ Ext.define('MyApp.view.MyViewport', {
             items: items,
             padding: 20,
             layout: 'stretch',
-            align: 'middle'
+            align: 'middle',
+            width: (wsCalc.hsize * fxr) + 100,
+            height: (wsCalc.vsize * fxr) + 100,
         });
+
+
         Ext.create('Ext.Window', {
             width: (wsCalc.hsize * fxr) + 100,
             height: (wsCalc.vsize * fxr) + 100,
@@ -378,7 +405,7 @@ Ext.define('MyApp.view.MyViewport', {
     },
 
     onViewportAfterLayout: function(abstractcontainer, layout, options) {
-        wsCalc = new MyApp.controller.WSC();
+        wsCalc = WideScreenCalc.controller.WSC;
         // Events
         var btnSave = this.down('#btnSave');
         btnSave.on('click', this.onClick, this);

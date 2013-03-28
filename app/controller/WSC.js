@@ -13,13 +13,14 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.controller.WSC', {
+Ext.define('WideScreenCalc.controller.WSC', {
     extend: 'Ext.Base',
     alias: 'controller.WSCalc',
 
     requires: [
-        'MyApp.controller.Screen'
+        'WideScreenCalc.controller.Screen'
     ],
+    singleton: true,
 
     getCenterHeightFF: function() {
         return((this.vsize.value / 2) + this.VHFF);
@@ -114,21 +115,21 @@ Ext.define('MyApp.controller.WSC', {
 
     getScreens: function() {
 
-        var screens = new Array();
+        var screens = [];
         var x = 0, p = 0, o = 0;
         // x = left calculations, c = center calculations
         var c = (wsCalc.hsize / 2) - wsCalc.hsize;
         for ( i = 0; i < this.numprojectors; i++) {
-            var scrn = new MyApp.controller.Screen();
+            var scrn = new WideScreenCalc.controller.Screen();
             // left calcs
-            scrn.leftLeft = x;
-            scrn.leftCenter = wsCalc.getScreenWidth() / 2 + x;
-            scrn.leftRight = wsCalc.getScreenWidth() + x;
-            x = scrn.leftRight - this.getOverlapSize(); //subtract overlap
+            scrn.leftLeft = wsCalc.RoundNum(x, 2);
+            scrn.leftCenter = wsCalc.RoundNum((wsCalc.getScreenWidth() / 2 + x), 2);
+            scrn.leftRight = wsCalc.RoundNum(wsCalc.getScreenWidth() + x, 2);
+            x = wsCalc.RoundNum((scrn.leftRight - this.getOverlapSize()), 2); //subtract overlap
             // center calcs
-            scrn.centerLeft = c;
-            scrn.centerCenter = wsCalc.getScreenWidth() / 2 + c;
-            scrn.centerRight = wsCalc.getScreenWidth() + c;
+            scrn.centerLeft = wsCalc.RoundNum(c, 2);
+            scrn.centerCenter = wsCalc.RoundNum(wsCalc.getScreenWidth() / 2 + c, 2);
+            scrn.centerRight = wsCalc.RoundNum(wsCalc.getScreenWidth() + c, 2);
             c = scrn.centerRight;
 
             // pixel output calcs

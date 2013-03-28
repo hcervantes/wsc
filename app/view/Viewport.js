@@ -13,10 +13,10 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('MyApp.view.Viewport', {
-    extend: 'MyApp.view.MyViewport',
+Ext.define('WideScreenCalc.view.Viewport', {
+    extend: 'WideScreenCalc.view.MyViewport',
     renderTo: Ext.getBody(),
     requires: [
-        'MyApp.view.MyViewport'
+        'WideScreenCalc.view.MyViewport'
     ]
 });
