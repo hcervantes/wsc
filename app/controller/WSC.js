@@ -117,25 +117,27 @@ Ext.define('WideScreenCalc.controller.WSC', {
 
         var screens = [];
         var x = 0, p = 0, o = 0;
+        var screenWidth = Math.round(wsCalc.getScreenWidth());
+        var overlapSize = wsCalc.getOverlapSize();
         // x = left calculations, c = center calculations
         var c = (wsCalc.hsize / 2) - wsCalc.hsize;
         for ( i = 0; i < this.numprojectors; i++) {
             var scrn = new WideScreenCalc.controller.Screen();
             // left calcs
-            scrn.leftLeft = wsCalc.RoundNum(x, 2);
-            scrn.leftCenter = wsCalc.RoundNum((wsCalc.getScreenWidth() / 2 + x), 2);
-            scrn.leftRight = wsCalc.RoundNum(wsCalc.getScreenWidth() + x, 2);
-            x = wsCalc.RoundNum((scrn.leftRight - this.getOverlapSize()), 2); //subtract overlap
+            scrn.leftLeft = x.toFixed(2);
+            scrn.leftCenter = ((screenWidth / 2) + x).toFixed(2);
+            scrn.leftRight = (screenWidth + x).toFixed(2);
+            x = scrn.leftRight - overlapSize; //subtract overlap
             // center calcs
-            scrn.centerLeft = wsCalc.RoundNum(c, 2);
-            scrn.centerCenter = wsCalc.RoundNum(wsCalc.getScreenWidth() / 2 + c, 2);
-            scrn.centerRight = wsCalc.RoundNum(wsCalc.getScreenWidth() + c, 2);
+            scrn.centerLeft = c.toFixed(2);
+            scrn.centerCenter = ((screenWidth / 2) + c).toFixed(2);
+            scrn.centerRight = screenWidth + c;
             c = scrn.centerRight;
 
             // pixel output calcs
             scrn.startPixelOutput = p;
             scrn.endPixelOutput = p + wsCalc.HNatPixRate;
-            p = scrn.endPixelOutput - this.getOverlapSize(); //subtract overlap
+            p = scrn.endPixelOutput - overlapSize; //subtract overlap
 
             // pixel overlap calcs
             scrn.startPixelOverlap = wsCalc.HNatPixRate - wsCalc.getOverLapPix() + o;
@@ -145,6 +147,13 @@ Ext.define('WideScreenCalc.controller.WSC', {
             screens.push(scrn);
         }
         return screens;
+    },
+
+    convertFeet: function(decimalFeet) {
+        var feet = Math.floor(decimalFeet);
+        var inches = Math.round((decimalFeet - feet) * 12);
+        var text = feet + "'-" + inches + '"';
+        return text;
     }
 
 });
