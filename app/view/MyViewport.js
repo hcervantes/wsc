@@ -324,8 +324,20 @@ Ext.define('WideScreenCalc.view.MyViewport', {
         var textItems = [];
         var screenWidth = wsCalc.getScreenWidth();
         var screenHeight = wsCalc.vsize;
+        var yMainOffset = 10;
         for(var i = 0; i<screens.length; i++)
         {
+            // Display logo as background
+            var logo = {
+                type: "image",
+                src: "resources/vx3logo.png",
+                height: screenHeight * fxr,
+                width: screenWidth * fxr,
+                x: (screens[i].leftLeft * fxr) + offset,
+                y: yMainOffset
+            };
+            items.push(logo);
+
             // Draw the screens
             var item = {
                 type: 'rect',
@@ -333,51 +345,114 @@ Ext.define('WideScreenCalc.view.MyViewport', {
                 height: screenHeight * fxr,
                 width: screenWidth * fxr,
                 x: (screens[i].leftLeft * fxr) + offset,
-                y: 10,
+                y: yMainOffset,
                 opacity: 0.5,
                 stroke: 'red',
-                'stroke-width': 2
+                'stroke-width': 2,
+                listeners: {
+                    mouseover: mouseMove,
+                    mouseout: mouseOut
+                }       
             };
+            // Odd numbers offset by 55, even by 30 to stagger text
+            var yOffset = 85;
+            if(i%2 === 0)
+            yOffset = 45;
+            var xOffset = -20;
             items.push(item);
-            // Dimension text
+            // Left Decimal Dimension text
             var textItem = {
                 type: "text",
-                text: screens[i].leftLeft,
-                x: (screens[i].leftLeft * fxr) - 7 + offset,
-                y: (screenHeight * fxr) + 30,
+                text: screens[i].leftLeft + '"',
+                x: (screens[i].leftLeft * fxr) + xOffset + offset,
+                y: (screenHeight * fxr) + yOffset,
                 fill: "green",
-                font: "18px monospace",
+                font: "10px Arial",
                 rotate: {
                     degrees: 270
                 }
             };
             items.push(textItem);
+            // Feet + inches
+            var feetInches = wsCalc.convertFeet(screens[i].leftLeft);
+            var feetTextItem = Ext.clone(textItem);
+            feetTextItem.text = feetInches;
+            feetTextItem.x = feetTextItem.x + 18;
+            items.push(feetTextItem);
+
             // Center dimension
             textItem = {
                 type: "text",
                 text: screens[i].leftCenter,
-                x: (screens[i].leftCenter * fxr) - 7 + offset,
-                y: (screenHeight * fxr) + 30,
+                x: (screens[i].leftCenter * fxr) + xOffset + offset,
+                y: (screenHeight * fxr) + yOffset,
                 fill: "green",
-                font: "18px monospace",
+                font: "10px Arial",
                 rotate: {
                     degrees: 270
                 }
             };
             items.push(textItem);
+            // Feet + inches
+            feetInches = wsCalc.convertFeet(screens[i].leftCenter);
+            feetTextItem = Ext.clone(textItem);
+            feetTextItem.text = feetInches;
+            feetTextItem.x = feetTextItem.x + 18;
+            items.push(feetTextItem);
+
             // Right dimension
             textItem = {
                 type: "text",
                 text: screens[i].leftRight,
-                x: (screens[i].leftRight * fxr) - 7 + offset,
-                y: (screenHeight * fxr) + 30,
+                x: (screens[i].leftRight * fxr) + xOffset + offset,
+                y: (screenHeight * fxr) + yOffset,
                 fill: "green",
-                font: "18px monospace",
+                font: "10px Arial",
                 rotate: {
                     degrees: 270
                 }
             };
             items.push(textItem);
+            // Feet + inches
+            feetInches = wsCalc.convertFeet(screens[i].leftRight);
+            feetTextItem = Ext.clone(textItem);
+            feetTextItem.text = feetInches;
+            feetTextItem.x = feetTextItem.x + 18;
+            items.push(feetTextItem);
+
+
+            // Left Dimension lines
+            var x1 = (screens[i].leftLeft * fxr) + offset;
+            var y1 = (screenHeight * fxr) + yMainOffset ;
+            var lineItem = {
+                type: "path",
+                path: "M" + x1 + " " + y1 + "v " + yOffset,
+                stroke: "purple"
+            };
+
+            items.push(lineItem);
+
+            // Center Dimension lines
+            x1 = (screens[i].leftCenter * fxr) + offset;
+            y1 = (screenHeight * fxr) + yMainOffset ;
+            lineItem = {
+                type: "path",
+                path: "M" + x1 + " " + y1 + "v " + yOffset,
+                stroke: "purple"
+            };
+
+            items.push(lineItem);
+
+            // Right Dimension lines
+            x1 = (screens[i].leftRight * fxr) + offset;
+            y1 = (screenHeight * fxr) + yMainOffset ;
+            lineItem = {
+                type: "path",
+                path: "M" + x1 + " " + y1 + "v " + yOffset,
+                stroke: "purple"
+            };
+
+            items.push(lineItem);
         }
 
         var drawComponent = Ext.create('Ext.draw.Component', {
@@ -386,18 +461,26 @@ Ext.define('WideScreenCalc.view.MyViewport', {
             padding: 20,
             layout: 'stretch',
             align: 'middle',
-            width: (wsCalc.hsize * fxr) + 100,
-            height: (wsCalc.vsize * fxr) + 100,
+            width: (wsCalc.hsize * fxr) + 300,
+            height: ((wsCalc.vsize * fxr)* 2) + 300
         });
 
 
         Ext.create('Ext.Window', {
             width: (wsCalc.hsize * fxr) + 100,
-            height: (wsCalc.vsize * fxr) + 100,
+            height: ((wsCalc.vsize * fxr)* 2) + 300,
             layout: 'hbox',
             align: 'middle',
             items: [drawComponent]
         }).show();
+
+        function mouseMove(el, t, eOpts) {
+            el.setAttributes({stroke: 'blue', "stroke-width": 3}, true);
+        }
+
+        function mouseOut(el, t, eOpts) {
+            el.setAttributes({stroke: 'red', "stroke-width": 2}, true);
+        }
     },
 
     onHsizeChange: function(field, newValue, oldValue, options) {
