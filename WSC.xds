@@ -9,10 +9,10 @@
         "genTimestamps": false,
         "cacheBust": false
     },
-    "xdsVersion": "2.1.0",
-    "xdsBuild": 678,
+    "xdsVersion": "2.2.0",
+    "xdsBuild": 908,
     "schemaVersion": 1,
-    "upgradeVersion": 210000000498,
+    "upgradeVersion": 210000000499,
     "framework": "ext41",
     "topInstanceFileMap": {
         "b1b83165-304f-41da-8986-b238c16475a0": {
@@ -67,6 +67,28 @@
                 "app/model/ProfileData.js"
             ],
             "className": "ProfileData"
+        },
+        "53dd3fe7-96ac-44f5-a361-5647d45598ed": {
+            "paths": [
+                "metadata/resource/js1"
+            ],
+            "className": "js1"
+        },
+        "0841171c-968e-4886-8f58-a0d46034461c": {
+            "paths": [
+                "metadata/controller/NumericField",
+                "app/controller/override/NumericField.js",
+                "app/controller/NumericField.js"
+            ],
+            "className": "NumericField"
+        },
+        "d5154c9c-f23a-48ea-9b20-d15826056f02": {
+            "paths": [
+                "metadata/controller/MyClass3",
+                "app/controller/override/MyClass3.js",
+                "app/controller/MyClass3.js"
+            ],
+            "className": "MyClass3"
         }
     },
     "viewOrderMap": {
@@ -78,14 +100,17 @@
         ],
         "controller": [
             "94598dfb-e775-41de-8bf4-e8d5a722c0ae",
-            "abb6ac0c-48b5-46e5-9278-8a9dbd402bb6"
+            "abb6ac0c-48b5-46e5-9278-8a9dbd402bb6",
+            "0841171c-968e-4886-8f58-a0d46034461c",
+            "d5154c9c-f23a-48ea-9b20-d15826056f02"
         ],
         "model": [
             "99a9b726-d79b-402a-8b9d-53e06d0e1690"
         ],
         "resource": [
             "b1b83165-304f-41da-8986-b238c16475a0",
-            "c3ab3a20-74b0-40de-8c1f-f88841faea82"
+            "c3ab3a20-74b0-40de-8c1f-f88841faea82",
+            "53dd3fe7-96ac-44f5-a361-5647d45598ed"
         ],
         "app": [
             "application"

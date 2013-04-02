@@ -31,7 +31,6 @@
         "StartPixelOverlap": "number",
         "EndPixelOverlap": "number"
     },
-    "id": "ExtBox1-ext-gen11551",
     "designerId": "abb6ac0c-48b5-46e5-9278-8a9dbd402bb6",
     "customConfigs": [
         {

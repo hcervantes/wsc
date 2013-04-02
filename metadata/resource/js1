@@ -6,8 +6,8 @@
     },
     "codeClass": null,
     "userConfig": {
-        "url": "WCS.js",
-        "defer": true
+        "url": "resources/NumericField.js",
+        "id": "numericField"
     },
-    "designerId": "c3ab3a20-74b0-40de-8c1f-f88841faea82"
+    "designerId": "53dd3fe7-96ac-44f5-a361-5647d45598ed"
 }

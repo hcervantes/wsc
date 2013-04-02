@@ -1,0 +1,13 @@
+{
+    "type": "class",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "NumericField",
+        "extend": "Ext.form.field.Number"
+    },
+    "designerId": "0841171c-968e-4886-8f58-a0d46034461c"
+}
