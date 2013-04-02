@@ -16,6 +16,6 @@ var HNatPixRate, VNatPixRate, projAspectRatio, numprojectors;
 var aspectRatio, sizePerStack, pixPerInch, overlapSize, lens, distance;
 var spyHNatPixRate, spyVNatPixRate, spyAspectRatio, spyOverlap, spyScreenTotalPix;
 var spyOpMonH, spyOpMonV, spyOpMonTotalPix, spyTotalPix;
-var loadProfile;
+var loadProfile, titleText, locationText;
 
 

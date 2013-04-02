@@ -23,19 +23,19 @@ Ext.define('WideScreenCalc.controller.WSC', {
     singleton: true,
 
     getCenterHeightFF: function() {
-        return((this.vsize.value / 2) + this.VHFF);
+        return((this.vsize / 2) + this.vhff);
     },
 
     getPixPerInch: function() {
         return (this.getSpyHNatPixRate() / (this.hsize * 12));
     },
 
-    getAspectRatio: function() {
-        return this.hsize / this.vsize;
-    },
-
     getProjAspectRatio: function() {
         return (this.HNatPixRate / this.VNatPixRate);
+    },
+
+    getAspectRatio: function() {
+        return this.hsize / this.vsize;
     },
 
     getStackWidth: function() {
@@ -164,7 +164,8 @@ Ext.define('WideScreenCalc.controller.WSC', {
         function mouseOut(el, t, eOpts) {
             el.setAttributes({stroke: 'red', "stroke-width": 2}, true);
         }
-
+        // move elelments to right to acomodate for the vertical center dimension text
+        xMainOffset = xMainOffset + 10;
         // Screens
         var screens = wsCalc.getScreens();
         // Spyder Overlap
@@ -202,122 +203,160 @@ Ext.define('WideScreenCalc.controller.WSC', {
                     mouseout: mouseOut
                 }       
             };
-            // Odd numbers offset by 55, even by 30 to stagger text
-            var yOffset = yMainOffset + 75;
-            if(i%2 === 0)
-            yOffset = yMainOffset + 35;
-            var xOffset = -20;
             items.push(item);
-            // Left Decimal Dimension text        
-            var textItem = {
-                type: "text",
-                text: screens[i].leftLeft + '"',
-                x: (screens[i].leftLeft * fxr) + xOffset + xMainOffset,
-                y: (screenHeight * fxr) + yOffset,
-                fill: "green",
-                font: "10px Arial",
-                rotate: {
-                    degrees: 270
-                }
-            };
-            items.push(textItem);
-            // Feet + inches
-            var feetInches = wsCalc.convertFeet(screens[i].leftLeft);
-            if(measureFrom == "center")
+            // Construct the array of dimensions to loop through
+            var dimensions = [
+            [screens[i].leftLeft, screens[i].centerLeft],
+            [screens[i].leftCenter, screens[i].centerCenter],
+            [screens[i].leftRight, screens[i].centerRight]
+            ];
+            for(var x = 0; x < dimensions.length; x++)
             {
-                feetInches = wsCalc.convertFeet(screens[i].centerLeft);
-            }
-            var feetTextItem = Ext.clone(textItem);
-            feetTextItem.text = feetInches;
-            feetTextItem.x = feetTextItem.x + 18;
-            items.push(feetTextItem);
+                var dim = dimensions[x][0];
+                // Odd numbers offset by 55, even by 30 to stagger text
+                var yOffset = yMainOffset + 45;
+                if(i%2 === 0)
+                yOffset = yMainOffset + 5;
+                var xOffset = -20;
 
-            // Center dimension
-            textItem = {
-                type: "text",
-                text: screens[i].leftCenter,
-                x: (screens[i].leftCenter * fxr) + xOffset + xMainOffset,
-                y: (screenHeight * fxr) + yOffset,
-                fill: "green",
-                font: "10px Arial",
-                rotate: {
-                    degrees: 270
+                // Dimension text        
+                var textItem = {
+                    type: 'text',
+                    text: dim + '"',
+                    x: (dim * fxr) + xOffset + xMainOffset + 3,
+                    y: (screenHeight * fxr) + yOffset + 18,
+                    fill: 'black',
+                    font: '10px "Arial"',
+                    rotate: {
+                        degrees: 0
+                    }
+                };
+                items.push(textItem);
+                // Feet + inches
+                var feetInches = wsCalc.convertFeet(dim);
+                if(measureFrom == "center")
+                {
+                    feetInches = wsCalc.convertFeet(dimensions[x][1]);
                 }
-            };
-            items.push(textItem);
-            // Feet + inches
-            feetInches = wsCalc.convertFeet(screens[i].leftCenter);
-            if(measureFrom == "center")
-            {
-                feetInches = wsCalc.convertFeet(screens[i].centerCenter);
-            }
-            feetTextItem = Ext.clone(textItem);
-            feetTextItem.text = feetInches;
-            feetTextItem.x = feetTextItem.x + 18;
-            items.push(feetTextItem);
+                var feetTextItem = Ext.clone(textItem);
+                feetTextItem.text = feetInches;
+                feetTextItem.y = feetTextItem.y + 13;
+                items.push(feetTextItem);
+                // Dimension lines
+                var x1 = (dim * fxr) + xMainOffset;
+                var y1 = (screenHeight * fxr) + yMainOffset ;
+                var lineItem = {
+                    type: "path",
+                    path: "M" + x1 + " " + y1 + " v " + yOffset + " h 25 v 28 h -50 v -28 h 25 h -25 v 14 h 50",
+                    stroke: "purple"
+                };
 
-            // Right dimension
-            textItem = {
-                type: "text",
-                text: screens[i].leftRight,
-                x: (screens[i].leftRight * fxr) + xOffset + xMainOffset,
-                y: (screenHeight * fxr) + yOffset,
-                fill: "green",
-                font: "10px Arial",
-                rotate: {
-                    degrees: 270
-                }
-            };
-            items.push(textItem);
-            // Feet + inches
-            feetInches = wsCalc.convertFeet(screens[i].leftRight);
-            if(measureFrom == "center")
-            {
-                feetInches = wsCalc.convertFeet(screens[i].centerRight);
-            }
-            feetTextItem = Ext.clone(textItem);
-            feetTextItem.text = feetInches;
-            feetTextItem.x = feetTextItem.x + 18;
-            items.push(feetTextItem);
-
-
-            // Left Dimension lines
-            var x1 = (screens[i].leftLeft * fxr) + xMainOffset;
-            var y1 = (screenHeight * fxr) + yMainOffset ;
-            var lineItem = {
-                type: "path",
-                path: "M" + x1 + " " + y1 + "v " + yOffset,
-                stroke: "purple"
-            };
-
-            items.push(lineItem);
-
-            // Center Dimension lines
-            x1 = (screens[i].leftCenter * fxr) + xMainOffset;
-            y1 = (screenHeight * fxr) + yMainOffset ;
-            lineItem = {
-                type: "path",
-                path: "M" + x1 + " " + y1 + "v " + yOffset,
-                stroke: "purple"
-            };
-
-            items.push(lineItem);
-
-            // Right Dimension lines
-            x1 = (screens[i].leftRight * fxr) + xMainOffset;
-            y1 = (screenHeight * fxr) + yMainOffset ;
-            lineItem = {
-                type: "path",
-                path: "M" + x1 + " " + y1 + "v " + yOffset,
-                stroke: "purple"
-            };
-
-            items.push(lineItem);
+                items.push(lineItem);
+            }  
         }
+        // Vertical Center Dimension line
+        var cX1 = 5;
+        var cY1 = ((screenHeight * fxr)/2) + yMainOffset ;
+        var verticalCenterLineItem = {
+            type: "path",
+            path: "M0 " + cY1 + " h 15 M20 " + cY1 + " h 15 M40 " + cY1 + " h 15",
+            stroke: "red"
+        };
+        items.push(verticalCenterLineItem);
 
+        // Vertical Center Dimension text
+        var verticalCenterTextItem = {
+            type: "text",
+            text: wsCalc.getCenterHeightFF().toFixed(2),
+            fill: "black",
+            font: "10px Arial",
+            x: 0,
+            y: cY1 - 10 
+        };
+        items.push(verticalCenterTextItem);
+        var feetDim = wsCalc.convertFeet(wsCalc.getCenterHeightFF().toFixed(2));
+        feetVerticalCenterDimTextItem = Ext.clone(verticalCenterTextItem);
+        feetVerticalCenterDimTextItem.text = feetDim;
+        feetVerticalCenterDimTextItem.y = feetVerticalCenterDimTextItem.y + 18;
+        items.push(feetVerticalCenterDimTextItem);
+        items.push(verticalCenterTextItem);
+
+        // If Measure center, add centerline
+        if(measureFrom === 'center')
+        {
+            cX1 = ((wsCalc.hsize/2) * fxr) + xMainOffset;
+            cY1 = ((screenHeight * fxr)/2) + yMainOffset ;
+            var CenterLineItem = {
+                type: "path",
+                path: "M" + cX1 + " " + cY1 + " v 25 M" + cX1 + " " + (cY1 + 30) + " v 15 M" + cX1 + " " + 
+                (cY1 + 50) + " v 130",
+                stroke: "blue"
+            };
+            items.push(CenterLineItem);
+        }
         return items;
 
+    },
 
+    drawTitle: function(xMainOffset, yMainOffset, fxr) {
+        var items = [];
+        var center = (wsCalc.hsize/2) * fxr;
+        var screenWidth = wsCalc.getScreenWidth();
+        var screenHeight = wsCalc.vsize;
+
+        // Dimension text        
+        var textItem = {
+            type: "text",
+            text: titleText.getValue(),
+            x: center,
+            y: 10,
+            fill: "black",
+            font: '18px "Arial"'
+        };
+        items.push(textItem);
+        // Location
+        textItem = {
+            type: "text",
+            text: locationText.getValue(),
+            x: center,
+            y: 28,
+            fill: "black",
+            font: '14px "Arial"'
+        };
+        items.push(textItem);
+
+        // Date
+        textItem = {
+            type: "text",
+            text: new Date().toDateString(),
+            x: center,
+            y: 40,
+            fill: "black",
+            font: '12px "Arial"'
+        };
+        items.push(textItem);
+
+        // Total Screens
+        textItem = {
+            type: "text",
+            text: "Total Screens: " + numprojectors.getValue(),
+            x: 40,
+            y: 70,
+            fill: "black",
+            font: '12px "Arial"'
+        };
+        items.push(textItem);
+
+        // Horizontal Line
+        textItem = {
+            type: 'path',
+            path: 'M10 100 h ' + wsCalc.hsize * fxr,
+            stroke: 'black',
+            "stroke-width": 4
+        }
+        items.push(textItem);
+
+        return items;
     }
 
 });

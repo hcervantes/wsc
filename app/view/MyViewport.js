@@ -71,13 +71,7 @@ Ext.define('WideScreenCalc.view.MyViewport', {
                                 {
                                     xtype: 'button',
                                     itemId: 'btnSave',
-                                    text: 'Save Profile',
-                                    listeners: {
-                                        click: {
-                                            fn: me.onBtnSaveClick,
-                                            scope: me
-                                        }
-                                    }
+                                    text: 'Save Profile'
                                 }
                             ]
                         },
@@ -343,21 +337,30 @@ Ext.define('WideScreenCalc.view.MyViewport', {
         spyOpMonV.setValue(record.VOpMon);
     },
 
-    onBtnSaveClick: function(button, e, eOpts) {
-
-    },
-
     onHsizeChange: function(field, newValue, oldValue, eOpts) {
 
     },
 
     onButtonClick: function(button, e, eOpts) {
-        var items = [];
         var fxr = 10;
+        // Title text
+        var titleItems = [];
+        titleItems.push(wsCalc.drawTitle(20, 10, fxr));
+
+        var titleComponent = Ext.create('Ext.draw.Component', {
+            viewBox: false,
+            items: titleItems,
+            padding: 20,
+            layout: 'stretch',
+            align: 'middle',
+            width: (wsCalc.hsize * fxr + 200),
+            height: 150
+        });
+
         // Left screens measurements
+        var items = [];
         items.push(wsCalc.drawScreens(20, 10, fxr, "left"));
-        // Center measurements
-        items.push(wsCalc.drawScreens(20, (wsCalc.vsize * fxr) + 100, fxr, "center"));
+
 
         var drawComponent = Ext.create('Ext.draw.Component', {
             viewBox: false,
@@ -365,20 +368,33 @@ Ext.define('WideScreenCalc.view.MyViewport', {
             padding: 20,
             layout: 'stretch',
             align: 'middle',
-            width: (wsCalc.hsize * fxr) + 300,
-            height: ((wsCalc.vsize * fxr)* 2) + 300
+            width: (wsCalc.hsize * fxr + 200),
+            height: (wsCalc.vsize * fxr + 150)
         });
 
+        // Center measurements
+        var centerItems = [];
+        centerItems.push(wsCalc.drawScreens(20, 10, fxr, "center"));
+
+        var drawComponentCenter = Ext.create('Ext.draw.Component', {
+            viewBox: false,
+            items: centerItems,
+            padding: 20,
+            layout: 'stretch',
+            align: 'middle',
+            width: (wsCalc.hsize * fxr + 200),
+            height: (wsCalc.vsize * fxr + 150)
+        });
 
         Ext.create('Ext.Window', {
             width: (wsCalc.hsize * fxr) + 100,
             height: ((wsCalc.vsize * fxr)* 2) + 300,
-            layout: 'hbox',
+            layout: 'vbox',
             align: 'middle',
             autoScroll: true,
-            items: [drawComponent]
+            items: [titleComponent, drawComponent, drawComponentCenter],
+            maximizable: true
         }).show();
-
 
     },
 
@@ -421,6 +437,9 @@ Ext.define('WideScreenCalc.view.MyViewport', {
 
         distance = this.down('#distance');
         distance.on('change', this.onChange, this);
+
+        titleText = this.down('#lblShowTitle');
+        locationText = this.down('#lblShowLocation');
 
 
         spyHNatPixRate = this.down('#spyHNatPixRate');
