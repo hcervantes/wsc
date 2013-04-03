@@ -11,7 +11,7 @@
  * class.
  */
 var wsCalc;
-var hsize, vsize, vhff;
+var hsize, vsize, vhff, cmbProfile;
 var HNatPixRate, VNatPixRate, projAspectRatio, numprojectors;
 var aspectRatio, sizePerStack, pixPerInch, overlapSize, lens, distance;
 var spyHNatPixRate, spyVNatPixRate, spyAspectRatio, spyOverlap, spyScreenTotalPix;

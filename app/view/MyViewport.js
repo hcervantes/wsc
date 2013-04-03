@@ -38,29 +38,35 @@ Ext.define('WideScreenCalc.view.MyViewport', {
                     items: [
                         {
                             xtype: 'form',
+                            itemId: 'profileForm',
                             bodyPadding: 10,
                             title: '',
+                            url: 'deleteProfile.php',
                             items: [
                                 {
                                     xtype: 'textfield',
                                     anchor: '100%',
                                     itemId: 'lblShowTitle',
                                     fieldLabel: 'Show Title',
+                                    submitValue: false,
                                     blankText: 'Enter a Show Title'
                                 },
                                 {
                                     xtype: 'textfield',
                                     anchor: '100%',
                                     itemId: 'lblShowLocation',
-                                    fieldLabel: 'Show Location'
+                                    fieldLabel: 'Show Location',
+                                    submitValue: false
                                 },
                                 {
                                     xtype: 'combobox',
                                     anchor: '100%',
                                     itemId: 'cmbProfile',
                                     fieldLabel: 'Load Profile',
+                                    name: 'profileID',
                                     displayField: 'ProfileName',
                                     store: 'profileStore',
+                                    valueField: 'ID',
                                     listeners: {
                                         select: {
                                             fn: me.onCmbProfileSelect,
@@ -70,13 +76,21 @@ Ext.define('WideScreenCalc.view.MyViewport', {
                                 },
                                 {
                                     xtype: 'button',
-                                    itemId: 'btnSave',
-                                    text: 'Save Profile'
+                                    itemId: 'btnDelete',
+                                    text: 'Delete Selected Profile',
+                                    listeners: {
+                                        click: {
+                                            fn: me.onBtnDeleteClick,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         },
                         {
-                            xtype: 'panel',
+                            xtype: 'form',
+                            itemId: 'screenForm',
+                            url: 'updateProfile.php',
                             items: [
                                 {
                                     xtype: 'panel',
@@ -86,102 +100,125 @@ Ext.define('WideScreenCalc.view.MyViewport', {
                                         pack: 'center',
                                         type: 'hbox'
                                     },
-                                    title: 'Screens',
                                     items: [
                                         {
-                                            xtype: 'form',
+                                            xtype: 'panel',
                                             flex: 1,
+                                            defaults: {
+                                                width: 200
+                                            },
                                             bodyPadding: 10,
                                             title: 'Screen Inputs',
                                             items: [
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'hsize',
                                                     fieldLabel: 'Horizontal Size',
+                                                    name: 'hsize'
+                                                },
+                                                {
+                                                    xtype: 'numberfield',
+                                                    itemId: 'vsize',
+                                                    fieldLabel: 'Vertical Size',
+                                                    name: 'vsize'
+                                                },
+                                                {
+                                                    xtype: 'numberfield',
+                                                    itemId: 'aspectRatio',
+                                                    fieldLabel: 'Aspect Ratio',
+                                                    name: 'aspectRatio',
+                                                    submitValue: false,
+                                                    editable: false,
+                                                    hideTrigger: true,
+                                                    decimalPrecision: 3
+                                                },
+                                                {
+                                                    xtype: 'numberfield',
+                                                    itemId: 'vhff',
+                                                    fieldLabel: 'Vert. Ht From Floor',
+                                                    name: 'vhff'
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    itemId: 'saveBtn',
+                                                    text: 'Save Profile',
+                                                    tooltip: 'Save the current settings into a profile',
                                                     listeners: {
-                                                        change: {
-                                                            fn: me.onHsizeChange,
+                                                        click: {
+                                                            fn: me.onButtonClick1,
                                                             scope: me
                                                         }
                                                     }
                                                 },
                                                 {
-                                                    xtype: 'numberfield',
-                                                    anchor: '100%',
-                                                    itemId: 'vsize',
-                                                    fieldLabel: 'Vertical Size'
-                                                },
-                                                {
-                                                    xtype: 'numberfield',
-                                                    anchor: '100%',
-                                                    itemId: 'aspectRatio',
-                                                    fieldLabel: 'Aspect Ratio',
-                                                    editable: false,
-                                                    hideTrigger: true,
-                                                    decimalPrecision: 3
-                                                },
-                                                {
-                                                    xtype: 'numberfield',
-                                                    anchor: '100%',
-                                                    itemId: 'vhff',
-                                                    fieldLabel: 'Vert. Ht From Floor'
+                                                    xtype: 'hiddenfield',
+                                                    fieldLabel: 'Label',
+                                                    name: 'profileName'
                                                 }
                                             ]
                                         },
                                         {
-                                            xtype: 'form',
+                                            xtype: 'panel',
                                             flex: 1,
+                                            defaults: {
+                                                width: 200
+                                            },
                                             bodyPadding: 10,
                                             title: 'Projector Information',
                                             items: [
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'HNatPixRate',
-                                                    fieldLabel: 'Horz. Native Pixel Rate'
+                                                    fieldLabel: 'Horz. Native Pixel Rate',
+                                                    name: 'HNatPixRate'
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'VNatPixRate',
-                                                    fieldLabel: 'Vert. Native Pixel Rate'
+                                                    fieldLabel: 'Vert. Native Pixel Rate',
+                                                    name: 'VNatPixRate'
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'projAspectRatio',
                                                     fieldLabel: 'Aspect Ratio',
+                                                    name: 'projAspectRatio',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 3
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'numprojectors',
-                                                    fieldLabel: 'Num. of Projectors'
+                                                    fieldLabel: 'Num. of Projectors',
+                                                    name: 'numprojectors',
+                                                    value: 1,
+                                                    minValue: 1
                                                 },
                                                 {
                                                     xtype: 'textfield',
-                                                    anchor: '100%',
                                                     itemId: 'sizePerStack',
-                                                    fieldLabel: 'Size Per Stack'
+                                                    fieldLabel: 'Size Per Stack',
+                                                    name: 'sizePerStack',
+                                                    submitValue: false
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'pixPerInch',
                                                     fieldLabel: 'Pixels Per Inch',
+                                                    name: 'pixPerInch',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 3
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'overlapSize',
                                                     fieldLabel: 'Overlap Size',
+                                                    name: 'overlapSize',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 0
@@ -195,97 +232,112 @@ Ext.define('WideScreenCalc.view.MyViewport', {
                                                             anchor: '100%',
                                                             itemId: 'lens',
                                                             fieldLabel: 'Lens',
+                                                            name: 'lens',
                                                             submitLocaleSeparator: false
                                                         },
                                                         {
                                                             xtype: 'numberfield',
                                                             anchor: '100%',
                                                             itemId: 'distance',
-                                                            fieldLabel: 'Distance'
+                                                            fieldLabel: 'Distance',
+                                                            name: 'distance'
                                                         }
                                                     ]
                                                 }
                                             ]
                                         },
                                         {
-                                            xtype: 'form',
+                                            xtype: 'panel',
                                             flex: 1,
+                                            defaults: {
+                                                width: 200
+                                            },
                                             bodyPadding: 10,
                                             title: 'Spyder Pixel Information',
                                             items: [
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyHNatPixRate',
                                                     fieldLabel: 'Horz. Native Pixel Rate',
+                                                    name: 'spyHNatPixRate',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 0
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyVNatPixRate',
                                                     fieldLabel: 'Vert. Native Pixel Rate',
+                                                    name: 'spyVNatPixRate',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 0
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyAspectRatio',
                                                     fieldLabel: 'Aspect Ratio',
+                                                    name: 'spyAspectRatio',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 3
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyOverlap',
                                                     fieldLabel: 'Overlap',
+                                                    name: 'spyOverlap',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 0
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyScreenTotalPix',
                                                     fieldLabel: 'Screen Total Pixels',
+                                                    name: 'spyScreenTotalPix',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 0
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyOpMonH',
                                                     fieldLabel: 'OpMon Format H',
+                                                    name: 'spyOpMonH',
                                                     decimalPrecision: 0
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyOpMonV',
+                                                    width: 200,
                                                     fieldLabel: 'OpMon Format V',
+                                                    name: 'spyOpMonV',
                                                     decimalPrecision: 0
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyOpMonTotalPix',
+                                                    width: 200,
                                                     fieldLabel: 'OpMon Total Pix',
+                                                    name: 'spyOpMonTotalPix',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 0
                                                 },
                                                 {
                                                     xtype: 'numberfield',
-                                                    anchor: '100%',
                                                     itemId: 'spyTotalPix',
+                                                    width: 200,
                                                     fieldLabel: 'Spyder Total Pix',
+                                                    name: 'spyTotalPix',
+                                                    submitValue: false,
                                                     editable: false,
                                                     hideTrigger: true,
                                                     decimalPrecision: 0
@@ -300,6 +352,7 @@ Ext.define('WideScreenCalc.view.MyViewport', {
                                     xtype: 'button',
                                     dock: 'bottom',
                                     width: 50,
+                                    menuAlign: 'tl',
                                     text: 'Show Layout',
                                     tooltip: 'Show layout of screens',
                                     listeners: {
@@ -337,8 +390,62 @@ Ext.define('WideScreenCalc.view.MyViewport', {
         spyOpMonV.setValue(record.VOpMon);
     },
 
-    onHsizeChange: function(field, newValue, oldValue, eOpts) {
+    onBtnDeleteClick: function(button, e, eOpts) {
+        var profileName = cmbProfile.getRawValue();
+        var form = this.down('#profileForm').getForm();
+        if (form.isValid() && profileName !== "") {
+            Ext.Msg.confirm('Delete Profile', 'Are you sure you want to delete profile ' + profileName + '?', function(btn, text){
+                if (btn == 'yes'){
 
+                    var vals = form.getValues();
+                    form.submit({
+                        success: function(form, action) {
+                            var store = Ext.data.StoreManager.lookup('profileStore');
+                            store.reload();
+                            Ext.Msg.alert('Success', action.result.message);
+
+                            cmbProfile.clearValue();
+                        },
+                        failure: function(form, action) {
+                            Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');
+                        }
+
+                    });
+                }
+            });
+        }
+    },
+
+    onButtonClick1: function(button, e, eOpts) {
+        // The getForm() method returns the Ext.form.Basic instance:
+        var form = this.down('#screenForm').getForm();
+        if (form.isValid()) {
+            Ext.Msg.prompt('Profile Name', 'Name these preset settings:', function(btn, text){
+                if (btn == 'ok'){
+
+                    if(text === "")
+                    {
+                        return;
+                    }
+                    // Submit the Ajax request and handle the response
+                    form.setValues([{id:'profileName', value:text}]);
+                    var vals = form.getValues();
+                    form.submit({
+                        success: function(form, action) {
+                            var store = Ext.data.StoreManager.lookup('profileStore');
+                            store.reload();
+                            Ext.Msg.alert('Success', action.result.message);
+
+                            cmbProfile.setValue(action.result.pkid);
+                        },
+                        failure: function(form, action) {
+                            Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');
+                        }
+
+                    });
+                }
+            });
+        }
     },
 
     onButtonClick: function(button, e, eOpts) {
@@ -400,9 +507,8 @@ Ext.define('WideScreenCalc.view.MyViewport', {
 
     onViewportAfterLayout: function(container, layout, eOpts) {
         wsCalc = WideScreenCalc.controller.WSC;
+        cmbProfile = this.down('#cmbProfile');
         // Events
-        var btnSave = this.down('#btnSave');
-        btnSave.on('click', this.onClick, this);
 
         hsize = this.down('#hsize');
         hsize.on('change', this.onChange, this);

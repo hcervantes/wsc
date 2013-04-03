@@ -27,7 +27,7 @@
             "userConfig": {
                 "height": null,
                 "width": 650,
-                "designer|userClassName": "MyPanel",
+                "designer|userClassName": "MyPanel6",
                 "title": "Wide Screen Calculator"
             },
             "designerId": "fa120399-339d-4626-a544-c052529596bc",
@@ -40,10 +40,12 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "itemId": "profileForm",
                         "width": null,
                         "designer|userClassName": "MyForm",
                         "bodyPadding": 10,
-                        "title": ""
+                        "title": "",
+                        "url": "deleteProfile.php"
                     },
                     "designerId": "7ce831ce-3c57-48d3-86a2-77d428f3034a",
                     "cn": [
@@ -60,6 +62,7 @@
                                 "designer|userClassName": "MyTextField",
                                 "designer|displayName": "lblShowTitle",
                                 "fieldLabel": "Show Title",
+                                "submitValue": false,
                                 "blankText": "Enter a Show Title"
                             },
                             "designerId": "0499e133-d73e-4da9-8d54-077a612538dd"
@@ -76,7 +79,8 @@
                                 "itemId": "lblShowLocation",
                                 "designer|userClassName": "MyTextField1",
                                 "designer|displayName": "lblShowLocation",
-                                "fieldLabel": "Show Location"
+                                "fieldLabel": "Show Location",
+                                "submitValue": false
                             },
                             "designerId": "dba75527-f61c-4d3d-a7cb-65bb77b5b0e5"
                         },
@@ -92,8 +96,10 @@
                                 "itemId": "cmbProfile",
                                 "designer|userClassName": "MyComboBox1",
                                 "fieldLabel": "Load Profile",
+                                "name": "profileID",
                                 "displayField": "ProfileName",
-                                "store": "profileStore"
+                                "store": "profileStore",
+                                "valueField": "ID"
                             },
                             "designerId": "283de0e9-9e9e-4aa5-8684-b4279e36af2f",
                             "cn": [
@@ -133,25 +139,69 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "itemId": "btnSave",
+                                "itemId": "btnDelete",
                                 "designer|userClassName": "MyButton",
-                                "designer|displayName": "btnSave",
-                                "text": "Save Profile"
+                                "designer|displayName": null,
+                                "text": "Delete Selected Profile"
                             },
-                            "designerId": "3d394afd-9620-4835-bf1f-0ed792b9a769"
+                            "designerId": "3d394afd-9620-4835-bf1f-0ed792b9a769",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "onBtnDeleteClick",
+                                        "fn": "onBtnDeleteClick",
+                                        "implHandler": [
+                                            "var profileName = cmbProfile.getRawValue();",
+                                            "var form = this.down('#profileForm').getForm();",
+                                            "if (form.isValid() && profileName !== \"\") {",
+                                            "    Ext.Msg.confirm('Delete Profile', 'Are you sure you want to delete profile ' + profileName + '?', function(btn, text){",
+                                            "        if (btn == 'yes'){",
+                                            "           ",
+                                            "            var vals = form.getValues();",
+                                            "            form.submit({",
+                                            "                success: function(form, action) {",
+                                            "                    var store = Ext.data.StoreManager.lookup('profileStore');",
+                                            "                    store.reload();",
+                                            "                    Ext.Msg.alert('Success', action.result.message);",
+                                            "                    ",
+                                            "                    cmbProfile.clearValue();",
+                                            "                },",
+                                            "                failure: function(form, action) {",
+                                            "                    Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');",
+                                            "\t\t\t\t}",
+                                            "        ",
+                                            "            });",
+                                            "        }",
+                                            "    });",
+                                            "}"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "84f8202e-f198-47cf-aa29-8d9eca96b3e1"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    "type": "Ext.panel.Panel",
+                    "type": "Ext.form.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|userClassName": "MyPanel2",
-                        "title": null
+                        "itemId": "screenForm",
+                        "designer|userClassName": "MyForm8",
+                        "title": null,
+                        "url": "updateProfile.php"
                     },
                     "designerId": "e122e02e-d8d1-49c1-8dca-b3239a7d7f2c",
                     "cn": [
@@ -169,12 +219,12 @@
                                 "itemId": "screenDetails",
                                 "designer|userClassName": "MyPanel1",
                                 "layout": "hbox",
-                                "title": "Screens"
+                                "title": null
                             },
                             "designerId": "06461044-2347-4c3e-9fdb-30affa83fb17",
                             "cn": [
                                 {
-                                    "type": "Ext.form.Panel",
+                                    "type": "Ext.panel.Panel",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
@@ -182,7 +232,12 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "layout|flex": 1,
-                                        "designer|userClassName": "MyForm1",
+                                        "designer|userClassName": "MyPanel14",
+                                        "defaults": [
+                                            "{",
+                                            "    width: 200",
+                                            "}"
+                                        ],
                                         "bodyPadding": 10,
                                         "title": "Screen Inputs"
                                     },
@@ -196,33 +251,13 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "hsize",
                                                 "designer|userClassName": "MyNumberField",
                                                 "designer|displayName": "hsize",
-                                                "fieldLabel": "Horizontal Size"
+                                                "fieldLabel": "Horizontal Size",
+                                                "name": "hsize"
                                             },
-                                            "designerId": "07aac292-4b20-4b13-8108-20bd446f506d",
-                                            "cn": [
-                                                {
-                                                    "type": "basiceventbinding",
-                                                    "reference": {
-                                                        "name": "listeners",
-                                                        "type": "array"
-                                                    },
-                                                    "codeClass": null,
-                                                    "userConfig": {
-                                                        "designer|userClassName": "onHsizeChange",
-                                                        "fn": "onHsizeChange",
-                                                        "implHandler": [
-                                                            ""
-                                                        ],
-                                                        "name": "change",
-                                                        "scope": "me"
-                                                    },
-                                                    "designerId": "f1d2d422-5fc9-4637-8729-19122734af96"
-                                                }
-                                            ]
+                                            "designerId": "07aac292-4b20-4b13-8108-20bd446f506d"
                                         },
                                         {
                                             "type": "Ext.form.field.Number",
@@ -232,10 +267,10 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "vsize",
                                                 "designer|userClassName": "MyNumberField1",
-                                                "fieldLabel": "Vertical Size"
+                                                "fieldLabel": "Vertical Size",
+                                                "name": "vsize"
                                             },
                                             "designerId": "774a2a07-bfd9-48c3-af89-c29f83ec8284"
                                         },
@@ -247,10 +282,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "aspectRatio",
                                                 "designer|userClassName": "MyNumberField2",
                                                 "fieldLabel": "Aspect Ratio",
+                                                "name": "aspectRatio",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 3
@@ -265,17 +301,98 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "vhff",
                                                 "designer|userClassName": "MyNumberField3",
-                                                "fieldLabel": "Vert. Ht From Floor"
+                                                "fieldLabel": "Vert. Ht From Floor",
+                                                "name": "vhff"
                                             },
                                             "designerId": "610b1329-7f91-41ec-94ab-bc266fe63ef2"
+                                        },
+                                        {
+                                            "type": "Ext.button.Button",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "dock": null,
+                                                "itemId": "saveBtn",
+                                                "designer|userClassName": "MyButton13",
+                                                "text": "Save Profile",
+                                                "tooltip": "Save the current settings into a profile"
+                                            },
+                                            "configAlternates": {
+                                                "tooltip": "string"
+                                            },
+                                            "designerId": "d79f5847-651c-4ece-968d-2d326d645124",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "onButtonClick1",
+                                                        "fn": "onButtonClick1",
+                                                        "implHandler": [
+                                                            "// The getForm() method returns the Ext.form.Basic instance:",
+                                                            "var form = this.down('#screenForm').getForm();",
+                                                            "if (form.isValid()) {",
+                                                            "    Ext.Msg.prompt('Profile Name', 'Name these preset settings:', function(btn, text){",
+                                                            "        if (btn == 'ok'){",
+                                                            "            ",
+                                                            "            if(text === \"\")",
+                                                            "            {",
+                                                            "                return;",
+                                                            "            }",
+                                                            "            // Submit the Ajax request and handle the response",
+                                                            "            form.setValues([{id:'profileName', value:text}]);",
+                                                            "            var vals = form.getValues();",
+                                                            "            form.submit({",
+                                                            "                success: function(form, action) {",
+                                                            "                    var store = Ext.data.StoreManager.lookup('profileStore');",
+                                                            "                    store.reload();",
+                                                            "                    Ext.Msg.alert('Success', action.result.message);",
+                                                            "                    ",
+                                                            "                    cmbProfile.setValue(action.result.pkid);",
+                                                            "                },",
+                                                            "                failure: function(form, action) {",
+                                                            "                    Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');",
+                                                            "\t\t\t\t}",
+                                                            "        ",
+                                                            "            });",
+                                                            "        }",
+                                                            "    });",
+                                                            "}"
+                                                        ],
+                                                        "name": "click",
+                                                        "scope": "me"
+                                                    },
+                                                    "designerId": "a49d8394-98ba-459e-abab-24146f810e34"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Hidden",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyHiddenField",
+                                                "fieldLabel": "Label",
+                                                "name": "profileName"
+                                            },
+                                            "designerId": "ead2fc13-0e4e-4410-b5f0-ac6a08d1eda1"
                                         }
                                     ]
                                 },
                                 {
-                                    "type": "Ext.form.Panel",
+                                    "type": "Ext.panel.Panel",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
@@ -284,7 +401,12 @@
                                     "userConfig": {
                                         "layout|flex": 1,
                                         "height": null,
-                                        "designer|userClassName": "MyForm2",
+                                        "designer|userClassName": "MyPanel2",
+                                        "defaults": [
+                                            "{",
+                                            "    width: 200",
+                                            "}"
+                                        ],
                                         "bodyPadding": 10,
                                         "title": "Projector Information"
                                     },
@@ -298,10 +420,10 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "HNatPixRate",
                                                 "designer|userClassName": "MyNumberField4",
-                                                "fieldLabel": "Horz. Native Pixel Rate"
+                                                "fieldLabel": "Horz. Native Pixel Rate",
+                                                "name": "HNatPixRate"
                                             },
                                             "designerId": "354ce140-dce9-4f11-8a4a-2dd3e0c8a658"
                                         },
@@ -313,10 +435,10 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "VNatPixRate",
                                                 "designer|userClassName": "MyNumberField5",
-                                                "fieldLabel": "Vert. Native Pixel Rate"
+                                                "fieldLabel": "Vert. Native Pixel Rate",
+                                                "name": "VNatPixRate"
                                             },
                                             "designerId": "003741d0-b37d-4111-a3fc-8245dd8481e7"
                                         },
@@ -328,10 +450,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "projAspectRatio",
                                                 "designer|userClassName": "MyNumberField7",
                                                 "fieldLabel": "Aspect Ratio",
+                                                "name": "projAspectRatio",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 3
@@ -346,10 +469,14 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "numprojectors",
                                                 "designer|userClassName": "MyNumberField6",
-                                                "fieldLabel": "Num. of Projectors"
+                                                "fieldLabel": "Num. of Projectors",
+                                                "name": "numprojectors",
+                                                "value": [
+                                                    "1"
+                                                ],
+                                                "minValue": 1
                                             },
                                             "designerId": "7b9ae36b-1a50-4c01-9ad0-136b594873bb"
                                         },
@@ -361,10 +488,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "sizePerStack",
                                                 "designer|userClassName": "MyTextField2",
-                                                "fieldLabel": "Size Per Stack"
+                                                "fieldLabel": "Size Per Stack",
+                                                "name": "sizePerStack",
+                                                "submitValue": false
                                             },
                                             "designerId": "25aa3f87-7452-4820-bedc-bbecdf9aa616"
                                         },
@@ -376,10 +504,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "pixPerInch",
                                                 "designer|userClassName": "MyNumberField13",
                                                 "fieldLabel": "Pixels Per Inch",
+                                                "name": "pixPerInch",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 3
@@ -394,10 +523,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "overlapSize",
                                                 "designer|userClassName": "MyNumberField14",
                                                 "fieldLabel": "Overlap Size",
+                                                "name": "overlapSize",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 0
@@ -413,6 +543,7 @@
                                             "codeClass": null,
                                             "userConfig": {
                                                 "designer|userClassName": "MyFieldSet",
+                                                "checkboxName": null,
                                                 "title": "Lensing"
                                             },
                                             "designerId": "cc3907b4-eefa-4d69-b10f-ad70d0f2799e",
@@ -429,6 +560,7 @@
                                                         "itemId": "lens",
                                                         "designer|userClassName": "MyNumberField8",
                                                         "fieldLabel": "Lens",
+                                                        "name": "lens",
                                                         "submitLocaleSeparator": false
                                                     },
                                                     "designerId": "0d2cf123-4136-41c1-aef5-fe2132ed8e2d"
@@ -444,7 +576,8 @@
                                                         "layout|anchor": "100%",
                                                         "itemId": "distance",
                                                         "designer|userClassName": "MyNumberField9",
-                                                        "fieldLabel": "Distance"
+                                                        "fieldLabel": "Distance",
+                                                        "name": "distance"
                                                     },
                                                     "designerId": "82867ade-5bd6-4fbd-be9f-fccea04a2115"
                                                 }
@@ -453,7 +586,7 @@
                                     ]
                                 },
                                 {
-                                    "type": "Ext.form.Panel",
+                                    "type": "Ext.panel.Panel",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
@@ -461,7 +594,12 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "layout|flex": 1,
-                                        "designer|userClassName": "MyForm3",
+                                        "designer|userClassName": "MyPanel15",
+                                        "defaults": [
+                                            "{",
+                                            "    width: 200",
+                                            "}"
+                                        ],
                                         "bodyPadding": 10,
                                         "title": "Spyder Pixel Information"
                                     },
@@ -475,10 +613,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyHNatPixRate",
                                                 "designer|userClassName": "MyNumberField15",
                                                 "fieldLabel": "Horz. Native Pixel Rate",
+                                                "name": "spyHNatPixRate",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 0
@@ -493,10 +632,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyVNatPixRate",
                                                 "designer|userClassName": "MyNumberField16",
                                                 "fieldLabel": "Vert. Native Pixel Rate",
+                                                "name": "spyVNatPixRate",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 0
@@ -511,10 +651,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyAspectRatio",
                                                 "designer|userClassName": "MyNumberField17",
                                                 "fieldLabel": "Aspect Ratio",
+                                                "name": "spyAspectRatio",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 3
@@ -529,10 +670,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyOverlap",
                                                 "designer|userClassName": "MyNumberField10",
                                                 "fieldLabel": "Overlap",
+                                                "name": "spyOverlap",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 0
@@ -547,10 +689,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyScreenTotalPix",
                                                 "designer|userClassName": "MyNumberField18",
                                                 "fieldLabel": "Screen Total Pixels",
+                                                "name": "spyScreenTotalPix",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 0
@@ -565,10 +708,10 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyOpMonH",
                                                 "designer|userClassName": "MyNumberField10",
                                                 "fieldLabel": "OpMon Format H",
+                                                "name": "spyOpMonH",
                                                 "decimalPrecision": 0
                                             },
                                             "designerId": "efa6afc6-eb1f-41d3-ba26-4358d514074c"
@@ -581,10 +724,11 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyOpMonV",
+                                                "width": 200,
                                                 "designer|userClassName": "MyNumberField10",
                                                 "fieldLabel": "OpMon Format V",
+                                                "name": "spyOpMonV",
                                                 "decimalPrecision": 0
                                             },
                                             "designerId": "760dcedc-8232-42c7-97fc-b1a9f0a1379b"
@@ -597,10 +741,12 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyOpMonTotalPix",
+                                                "width": 200,
                                                 "designer|userClassName": "MyNumberField19",
                                                 "fieldLabel": "OpMon Total Pix",
+                                                "name": "spyOpMonTotalPix",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 0
@@ -615,10 +761,12 @@
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "layout|anchor": "100%",
                                                 "itemId": "spyTotalPix",
+                                                "width": 200,
                                                 "designer|userClassName": "MyNumberField20",
                                                 "fieldLabel": "Spyder Total Pix",
+                                                "name": "spyTotalPix",
+                                                "submitValue": false,
                                                 "editable": false,
                                                 "hideTrigger": true,
                                                 "decimalPrecision": 0
@@ -641,6 +789,7 @@
                                 "width": 50,
                                 "designer|userClassName": "MyButton1",
                                 "designer|displayName": "Show Layout Button",
+                                "menuAlign": "tl",
                                 "text": "Show Layout",
                                 "tooltip": "Show layout of screens"
                             },
@@ -738,9 +887,8 @@
                 "fn": "onViewportAfterLayout",
                 "implHandler": [
                     "wsCalc = WideScreenCalc.controller.WSC;",
+                    "cmbProfile = this.down('#cmbProfile');",
                     "// Events",
-                    "var btnSave = this.down('#btnSave');",
-                    "btnSave.on('click', this.onClick, this);",
                     "",
                     "hsize = this.down('#hsize');",
                     "hsize.on('change', this.onChange, this);",
