@@ -285,11 +285,17 @@ Ext.define('WideScreenCalc.controller.WSC', {
         if(measureFrom === 'center')
         {
             cX1 = ((wsCalc.hsize/2) * fxr) + xMainOffset;
-            cY1 = ((screenHeight * fxr)/2) + yMainOffset ;
+            cY1 = (screenHeight * fxr) + yMainOffset + 15 ; // 15 px bellow bottom of screen
+            var cY2 = ((screenHeight/2)*fxr) + yMainOffset; // Middle of screen
+            var l = Math.round(cY2/5); // segment length
             var CenterLineItem = {
                 type: "path",
-                path: "M" + cX1 + " " + cY1 + " v 25 M" + cX1 + " " + (cY1 + 30) + " v 15 M" + cX1 + " " + 
-                (cY1 + 50) + " v 130",
+                path: "M" + cX1 + " " + 5 + " v " + l + 
+                " M" + cX1 + " " + ( l*2) + " v " + l +  " " + 
+                " M" + cX1 + " " + ((l*4)) + " v " + l + 
+                " M" + cX1 + " " + ((l*6)) + " v " + l +
+                " M" + cX1 + " " + ((l*8)) + " v " + l +
+                " M" + cX1 + " " + ((l*10)) + " v " + l,
                 stroke: "blue"
             };
             items.push(CenterLineItem);
@@ -427,7 +433,7 @@ Ext.define('WideScreenCalc.controller.WSC', {
         textItem = {
             type: "text",
             text: "Height",
-            x: 130,
+            x: 110,
             y: 85,
             fill: "black",
             font: "12px 'Arial', 'Times', 'serif'"
@@ -437,7 +443,7 @@ Ext.define('WideScreenCalc.controller.WSC', {
         textItem = {
             type: "text",
             text: screenHeight.toFixed(2),
-            x: 130,
+            x: 110,
             y: 100,
             fill: "black",
             font: "12px 'Arial', 'Times', 'serif'"
@@ -447,7 +453,7 @@ Ext.define('WideScreenCalc.controller.WSC', {
         textItem = {
             type: "text",
             text: wsCalc.VNatPixRate,
-            x: 130,
+            x: 110,
             y: 120,
             font: "12px 'Arial', 'Times', 'serif'"
         };
@@ -531,7 +537,7 @@ Ext.define('WideScreenCalc.controller.WSC', {
         textItem = {
             type: "text",
             text: "Height",
-            x: 360,
+            x: 340,
             y: 85,
             fill: "black",
             font: "12px 'Arial', 'Times', 'serif'"
@@ -541,7 +547,7 @@ Ext.define('WideScreenCalc.controller.WSC', {
         textItem = {
             type: "text",
             text: screenHeight.toFixed(2),
-            x: 360,
+            x: 340,
             y: 100,
             fill: "black",
             font: "12px 'Arial', 'Times', 'serif'"
@@ -551,12 +557,111 @@ Ext.define('WideScreenCalc.controller.WSC', {
         textItem = {
             type: "text",
             text: wsCalc.VNatPixRate,
-            x: 360,
+            x: 340,
+            y: 120,
+            font: "12px 'Arial', 'Times', 'serif'"
+        };
+        items.push(textItem);
+        // Overlap Header
+        textItem = {
+            type: "text",
+            text: "Overlap",
+            x: 394,
+            y: 85,
+            font: "12px 'Arial', 'Times', 'serif'"
+        };
+        items.push(textItem);
+        // Feet overlap
+        textItem = {
+            type: "text",
+            text: wsCalc.getOverlapSize().toFixed(2),
+            x: 394,
+            y: 100,
+            fill: "black",
+            font: "12px 'Arial', 'Times', 'serif'"
+        };
+        items.push(textItem);
+        // Pixels overlap
+        textItem = {
+            type: "text",
+            text: Math.round(wsCalc.getOverLapPix()),
+            x: 394,
             y: 120,
             font: "12px 'Arial', 'Times', 'serif'"
         };
         items.push(textItem);
 
+
+        //
+        // Legend
+        //
+        textItem = {
+            type: "text",
+            text: "Legend: ",
+            x: 470,
+            y: 70,
+            fill: "black",
+            font: "12px 'Arial', 'Times', 'serif'",
+            style: { 
+                fontWeight: 'bold',
+                fontStyle: 'italic'
+            }
+        };
+        items.push(textItem);
+        //
+        // Feet label
+        //
+        textItem = {
+            type: "text",
+            text: "0",
+            x: 470,
+            y: 100,
+            fill: "black",
+            font: "12px 'Arial', 'Times', 'serif'"
+        };
+        items.push(textItem);
+        // Pixels label
+        textItem = {
+            type: "text",
+            text: "0'-0" + '"',
+            x: 470,
+            y: 120,
+            font: "12px 'Arial', 'Times', 'serif'"
+        };
+        items.push(textItem);
+
+
+        //
+        // Decimal feet descriptors
+        // 
+        textItem = {
+            type: "text",
+            text: "Decimal feet",
+            x: 510,
+            y: 100,
+            fill: "black",
+            font: "12px 'Arial', 'Times', 'serif'"
+        };
+        items.push(textItem);
+        // Feet and inches descriptor
+        textItem = {
+            type: "text",
+            text: "Feet, inches",
+            x: 510,
+            y: 120,
+            fill: "black",
+            font: "12px 'Arial', 'Times', 'serif'"
+        };
+        items.push(textItem);
+
+        // dimension box
+        textItem = {
+            type: 'path',
+            path: 'M455 92 h 50 v 36 h -50 v -36 M455 110 h 50', 
+            stroke: 'black',
+            "stroke-width": 2
+        };
+        items.push(textItem);
 
 
 
