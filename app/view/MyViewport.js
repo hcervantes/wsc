@@ -354,7 +354,7 @@ Ext.define('WideScreenCalc.view.MyViewport', {
             layout: 'stretch',
             align: 'middle',
             width: (wsCalc.hsize * fxr + 200),
-            height: 150
+            height: 200
         });
 
         // Left screens measurements
